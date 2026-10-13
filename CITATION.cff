@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "Si vous utilisez ces données, merci de les citer ainsi. / If you use these data, please cite them as below."
+type: dataset
+title: "Microcontrôland — données scientifiques / scientific data"
+authors:
+  - family-names: "Brière"
+    given-names: "Bran"
+repository-code: "https://github.com/branbriere/microcontroland-data"
+url: "https://branbriere.github.io/microcontroland/"
+license: CC-BY-4.0
+date-released: 2026-10-13
+keywords:
+  - artificial society
+  - multi-agent simulation
+  - neural networks
+  - microcontrollers
+  - ESP32
+  - language emergence
+  - naming game
+abstract: >-
+  Raw daily data from Microcontrôland, a fictional country simulated by
+  seven ESP32 microcontrollers hosting 120 small neural-network citizens.
+  Données brutes quotidiennes de Microcontrôland, pays fictif simulé par
+  sept microcontrôleurs ESP32 et 120 citoyens réseaux de neurones.

@@ -1,0 +1,367 @@
+{
+  "miseAJour": "2026-10-13",
+  "statuts": {
+    "projet": {
+      "fr": "Projet",
+      "en": "Planned"
+    },
+    "protocole": {
+      "fr": "Protocole publié",
+      "en": "Protocol published"
+    },
+    "donnees-en-cours": {
+      "fr": "Données en cours",
+      "en": "Data in progress"
+    },
+    "publiee": {
+      "fr": "Publiée",
+      "en": "Published"
+    },
+    "corrigee": {
+      "fr": "Corrigée",
+      "en": "Corrected"
+    }
+  },
+  "etudes": [
+    {
+      "id": "00",
+      "titre": {
+        "fr": "Architecture, fiabilité et coût énergétique",
+        "en": "Architecture, reliability and energy cost"
+      },
+      "statut": "donnees-en-cours",
+      "moment": {
+        "fr": "maintenant",
+        "en": "now"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "01",
+      "titre": {
+        "fr": "Émergence et convergence du vocabulaire",
+        "en": "Emergence and convergence of vocabulary"
+      },
+      "statut": "donnees-en-cours",
+      "moment": {
+        "fr": "jalons jours 30 et 60",
+        "en": "milestones days 30 and 60"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "02",
+      "titre": {
+        "fr": "Dynamique et stabilité des régimes",
+        "en": "Dynamics and stability of regimes"
+      },
+      "statut": "donnees-en-cours",
+      "moment": {
+        "fr": "MAJ 1",
+        "en": "update 1"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      },
+      "protocole": {
+        "fr": "protocoles/02-regimes-preenregistrement.md",
+        "en": "protocoles/02-regimes-preregistration.en.md"
+      }
+    },
+    {
+      "id": "03",
+      "titre": {
+        "fr": "Mémoire des crises et décisions ultérieures",
+        "en": "Memory of crises and later decisions"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 1b",
+        "en": "update 1b"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "04",
+      "titre": {
+        "fr": "Diversité neuronale et comportement collectif",
+        "en": "Neural diversity and collective behaviour"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 1b-3",
+        "en": "update 1b-3"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "05",
+      "titre": {
+        "fr": "Échanges économiques et coopération",
+        "en": "Economic exchange and cooperation"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 2",
+        "en": "update 2"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "06",
+      "titre": {
+        "fr": "Pénuries et conflits",
+        "en": "Shortages and conflicts"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 2",
+        "en": "update 2"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "07",
+      "titre": {
+        "fr": "Apprentissage et diffusion du savoir",
+        "en": "Learning and the spread of knowledge"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 3",
+        "en": "update 3"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "08",
+      "titre": {
+        "fr": "Croyances et arbitrages collectifs",
+        "en": "Beliefs and collective trade-offs"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 3 puis 5",
+        "en": "update 3 then 5"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "09",
+      "titre": {
+        "fr": "Équilibres écologiques et extinctions",
+        "en": "Ecological equilibria and extinctions"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 4",
+        "en": "update 4"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "10",
+      "titre": {
+        "fr": "Hérédité et évolution des cerveaux",
+        "en": "Heredity and evolution of brains"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 5",
+        "en": "update 5"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "11",
+      "titre": {
+        "fr": "Résilience sociale et réorganisation",
+        "en": "Social resilience and reorganisation"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 5-6",
+        "en": "updates 5-6"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "12",
+      "titre": {
+        "fr": "Transmission culturelle et persistance des pratiques",
+        "en": "Cultural transmission and persistence of practices"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 6-7",
+        "en": "updates 6-7"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "13",
+      "titre": {
+        "fr": "Vieillissement neuronal et perte de fonction",
+        "en": "Neural ageing and loss of function"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 5",
+        "en": "update 5"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "14",
+      "titre": {
+        "fr": "Rééducation et restauration des fonctions",
+        "en": "Rehabilitation and restoration of function"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 5",
+        "en": "update 5"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "15",
+      "titre": {
+        "fr": "Psychothérapie artificielle et compromis neuronaux",
+        "en": "Artificial psychotherapy and neural trade-offs"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 5",
+        "en": "update 5"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "16",
+      "titre": {
+        "fr": "Prévention, soins et coût collectif",
+        "en": "Prevention, care and collective cost"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 5",
+        "en": "update 5"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "17",
+      "titre": {
+        "fr": "Acceptation des soins et inégalités régionales",
+        "en": "Acceptance of care and regional inequalities"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 5",
+        "en": "update 5"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "18",
+      "titre": {
+        "fr": "Croyance, apaisement et réparation",
+        "en": "Belief, relief and repair"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 5",
+        "en": "update 5"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "19",
+      "titre": {
+        "fr": "Épidémies et continuité des services",
+        "en": "Epidemics and continuity of services"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "MAJ 5",
+        "en": "update 5"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    },
+    {
+      "id": "20",
+      "titre": {
+        "fr": "Transfert de l'expérience sociale vers des tâches inédites",
+        "en": "Transferring social experience to novel tasks"
+      },
+      "statut": "projet",
+      "moment": {
+        "fr": "dès octobre 2027",
+        "en": "from October 2027"
+      },
+      "programme": {
+        "fr": "etudes/programme.md",
+        "en": "etudes/programme.en.md"
+      }
+    }
+  ]
+}
