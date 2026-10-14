@@ -12,6 +12,8 @@ Ce dépôt contient les **données brutes** du pays, sa documentation et les ét
 | --- | --- |
 | `donnees/ere-NNN/quotidien/` | Un fichier par jour, publié par la passerelle chaque soir après le journal. Jamais modifié ensuite. |
 | `donnees/ere-NNN/manifeste.json` | Liste des fichiers avec date, version du firmware, taille et empreinte SHA-256. |
+| `donnees/ere-001/reconstitue/` | Les jours du 9 au 14 octobre 2026, publiés avant l'export brut, rebâtis à partir du journal. Marqués « reconstitué », avec leur propre manifeste. |
+| `outils/` | Le script de reconstitution (licence MIT). |
 | `documentation/` | Architecture, dictionnaire des données, historique des versions. |
 | `protocoles/` | Protocoles et pré-enregistrements, déposés avant l'analyse. |
 | `etudes/` | [Programme des études](etudes/programme.md) et catalogue avec le statut de chacune. |
@@ -29,6 +31,8 @@ Ce dépôt contient les **données brutes** du pays, sa documentation et les ét
 - Code : [MIT](LICENSE-CODE).
 - Pour citer ce jeu de données : voir [CITATION.cff](CITATION.cff) (bouton « Cite this repository » de GitHub).
 
+Auteur : Bran Brière — ORCID [0009-0003-0439-8028](https://orcid.org/0009-0003-0439-8028)
+
 Signalement d'erreur ou question : ouvrez une *issue*.
 
 ---
@@ -45,6 +49,8 @@ This repository holds the country's **raw data**, its documentation and the stud
 | --- | --- |
 | `donnees/ere-NNN/quotidien/` | One file per day, published by the gateway every evening after the newspaper. Never modified afterwards. |
 | `donnees/ere-NNN/manifeste.json` | List of files with date, firmware version, size and SHA-256 checksum. |
+| `donnees/ere-001/reconstitue/` | Days from 9 to 14 October 2026, published before the raw export, rebuilt from the newspaper. Marked "reconstitue" (rebuilt), with their own manifest. |
+| `outils/` | The rebuild script (MIT licence). |
 | `documentation/` | Architecture, data dictionary, version history. |
 | `protocoles/` | Protocols and pre-registrations, filed before analysis. |
 | `etudes/` | [Study programme](etudes/programme.en.md) and catalogue with each study's status. |
@@ -63,5 +69,7 @@ Folder and field names are in French; the data dictionary gives their meaning in
 - Data and documentation: [CC BY 4.0](LICENSE-DATA) — free reuse with attribution.
 - Code: [MIT](LICENSE-CODE).
 - To cite this dataset: see [CITATION.cff](CITATION.cff) (GitHub's "Cite this repository" button).
+
+Author: Bran Brière — ORCID [0009-0003-0439-8028](https://orcid.org/0009-0003-0439-8028)
 
 To report an error or ask a question: open an *issue*.

@@ -1,0 +1,107 @@
+# Dictionnaire des données
+
+*[English version](dictionnaire-donnees.en.md)* · Format des fichiers quotidiens : **1** (firmware 0.6, depuis le 15 octobre 2026)
+
+## Règles générales
+
+- **Un fichier par jour** : `donnees/ere-NNN/quotidien/AAAA-MM-JJ.json`, écrit par la passerelle à 20 h, publié juste après le journal, **jamais modifié ensuite**.
+- **Échelle brute** : les grandeurs d'humeur des citoyens et des régions vont de **0 à 255** (255 = maximum). Les moyennes du pays sont données en **millièmes** (0 à 1000).
+- **`null` = absent** (région muette, heure perdue, valeur inconnue). Jamais remplacé par 0.
+- **Heures** : `tick` est le numéro de l'heure du pays depuis le début de l'ère (1, 2, 3…). Il sert à comparer réel et simulation en heures vécues, pas en jours de calendrier.
+- **Vérification** : chaque fichier figure dans `donnees/ere-NNN/manifeste.json` avec sa taille en octets et son empreinte SHA-256 (`sha256sum fichier.json`).
+- Les noms de champs sont en français ; les textes sont en français et en anglais (`fr`, `en`).
+
+## Racine du fichier
+
+| Champ | Type | Sens |
+| --- | --- | --- |
+| `format` | entier | Version du format (1). |
+| `source` | texte | `passerelle` (mesuré) ; `reconstitue` pour les jours rebâtis après coup (dossier `reconstitue/`). |
+| `firmware` | texte | Version du programme de la passerelle, ex. `0.6`. |
+| `parametres` | objet | `heureDuPaysMs` (durée d'une heure du pays en ms), `regions`, `citoyensParRegion`, `connexionsParCerveau`, `idees` (nombre d'idées du lexique), `seuilMotCommun` (régions qui doivent s'accorder pour qu'un mot soit commun), `echelle` (255). |
+| `ere` | entier | Numéro de l'ère (un « Grand Reset » ouvre une nouvelle ère). |
+| `date` | texte | Date française de l'édition (AAAA-MM-JJ). |
+| `jourEre` | entier | Jour de l'ère. |
+| `edition` | entier | Numéro de l'édition du journal du même soir. |
+| `heuresVecues` | entier | Heures du pays vécues depuis le début de l'ère, au moment de l'édition. |
+| `genereUtc` | texte / null | Heure UTC d'écriture du fichier (ISO 8601). |
+| `heures` | liste | Une entrée par heure enregistrée depuis l'édition précédente (voir ci-dessous). |
+| `heuresManquantes` | liste / null | `tick` des heures attendues mais absentes (redémarrage, coupure). `null` si le début de la journée est inconnu (premier fichier après un démarrage). |
+| `evenements` | liste | Les faits du jour notés par la passerelle. |
+| `pays` | objet | État du pays au moment de l'édition. |
+| `citoyens` | liste de 120 | Un objet par citoyen (ou `null` si sa région n'a jamais répondu). |
+| `langue` | objet | État de la langue commune. |
+| `journal` | objet | Renvoi vers l'édition (interprétation) : `edition`, `fichier` (chemin sur le site). |
+| `systeme` | objet | `notes` : événements techniques (voir plus bas). |
+
+## `heures[]`
+
+| Champ | Sens |
+| --- | --- |
+| `tick` | Numéro de l'heure du pays. |
+| `heure` | Heure française (0-23). |
+| `utc` | Heure UTC réelle de l'enregistrement, ou `null` (heure Internet indisponible). |
+| `regions` | 6 entrées dans l'ordre Mines, Champs, Raffineries, Barrage, Port, Ville ; `null` si la région n'a pas répondu cette heure-là. |
+| `idee` | L'idée sur laquelle les régions ont proposé un mot cette heure-là : `id`, `fr`, `en`. `null` si aucune. |
+| `systeme` | `memoireLibre`, `psramLibre` (octets), `dureeHeureMs` (temps de la tournée radio), `paquetsPerdus` (depuis l'heure précédente) ; `null` si non mesuré. |
+
+### `heures[].regions[]`
+
+| Champ | Échelle | Sens |
+| --- | --- | --- |
+| `cerveaux` | 0-20 | Citoyens actifs. |
+| `satisfaction`, `peur`, `colere` | 0-255 | Moyennes de la région. |
+| `rebelles`, `censures`, `croyants`, `athees` | 0-20 | Nombre de citoyens. |
+| `production`, `objectif` | brut | Production de la région et objectif fixé. |
+| `mot` | objet / null | Mot proposé pour l'idée de l'heure : `syllabes` (indices), `ecrit` (forme écrite). |
+
+## `evenements[]`
+
+| Champ | Sens |
+| --- | --- |
+| `tick`, `heure` | Moment de l'événement. |
+| `type` | Lettre : `e` élection · `o` ouverture de campagne/scrutin · `c` révolte · `k` coup de palais · `b` bascule de régime · `p` report d'élection · `m` gouvernement · `s` censure · `v` région injoignable · `x` bourse · `n` nature (tempête, épidémie, récolte…) · `f` foi · `W` mot commun · `a` nouvel âge · `R` record · `l` lettre de l'ambassadeur · `S` signal émis · `g` signal reçu · `q` écoute · `r` début d'ère. |
+| `sous`, `a`, `b`, `c`, `d` | Paramètres bruts de l'événement (identifiants de citoyens, régions, valeurs). |
+| `texte` | Phrase du carnet, `fr` et `en` (non censurée). |
+
+## `pays`
+
+| Champ | Sens |
+| --- | --- |
+| `president` | Identifiant du président (1-120), `null` si vacance. |
+| `capitale` | Région du président, `null` si vacance. |
+| `regime` | Démocratie, Démocratie fragile, Oligarchie, Autocratie, Junte, Dictature, Agitation révolutionnaire. |
+| `ministres` | Identifiants des ministres. |
+| `objectifAtteint`, `ressources` | Millièmes (0-1000). |
+| `satisfactionMoyenne`, `peurMoyenne`, `colereMoyenne` | Millièmes (0-1000). |
+| `rebelles` | Rebelles dans les régions qui ont répondu. |
+| `croyantsPct`, `atheesPct` | Pourcentages. |
+| `age` | Âge de la civilisation atteint (0 = Fondation). |
+| `elections`, `revolutions`, `coupsDePalais`, `reports` | Compteurs depuis le début de l'ère. |
+| `bourse` | `statut` (`reels`, `simules`, `fermee`, `echec`, `aucune`) et `variations` (4 valeurs en %, cuivre, blé, pétrole, électricité ; `null` si pas de cotation). |
+
+## `citoyens[]`
+
+| Champ | Sens |
+| --- | --- |
+| `id` | 1-120 (1-20 Mines, 21-40 Champs… 101-120 Ville). |
+| `region` | Région. |
+| `satisfaction`, `colere`, `peur`, `foi` | 0-255. |
+| `etat` | Situation au moment de l'édition : `rebelle`, `censure`, `vote-president`, `ministre`, `president`. |
+| `jour` | Ce qui lui est arrivé dans la journée : `rebelle`, `censure`, `entre-gouvernement`, `quitte-gouvernement`, `elu`, `renverse`, `candidat`. |
+
+## `langue`
+
+| Champ | Sens |
+| --- | --- |
+| `motsCommuns` | Nombre de mots compris par au moins 5 régions. |
+| `idees[]` | Pour chaque idée apparue : `id`, `fr`, `en`, `motNational` (mot le plus partagé), `accord` (régions d'accord, 0-6), `commun` (vrai si accord ≥ 5). |
+| `comprehension` | Matrice 6 × 6 : compréhension entre régions, 0-255 (255 sur la diagonale). |
+
+## `systeme.notes[]`
+
+`tick`, `utc`, `type`, `detail`. Types : `demarrage` (avec la cause du redémarrage), `maintenance`, `publication` (échec d'un envoi), `perte` (fichier brut abandonné faute de place). Ces notes expliquent les trous des données ; elles ne les comblent pas.
+
+## Fichiers reconstitués (`donnees/ere-001/reconstitue/`)
+
+Les jours publiés avant l'export brut (9 au 14 octobre 2026) ont été rebâtis à partir des éditions du site (`tools/recherche/reconstitue.py`). Ils portent `"source": "reconstitue"`, `"reconstitue": true`, l'origine (commit du site) et la méthode. Ils ne contiennent **que** ce que le journal publiait : pourcentages arrondis (0-100), humeur et rebelles par région, bourse, faits du jour, langue. `heures`, `heuresVecues` et `heuresManquantes` valent `null`. Ils ont leur propre manifeste et ne doivent pas être mélangés aux mesures sans le signaler.

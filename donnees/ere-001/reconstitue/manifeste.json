@@ -1,0 +1,43 @@
+{
+ "format": 1,
+ "ere": 1,
+ "source": "reconstitue",
+ "fichiers": [
+  {
+   "fichier": "donnees/ere-001/reconstitue/2026-10-09.json",
+   "date": "2026-10-09",
+   "ere": 1,
+   "firmware": null,
+   "octets": 2556,
+   "sha256": "7f48fead346c7e18bc5e938c8bd228b5f2dce59f2da7324186803cc87a03de8d",
+   "source": "reconstitue"
+  },
+  {
+   "fichier": "donnees/ere-001/reconstitue/2026-10-10.json",
+   "date": "2026-10-10",
+   "ere": 1,
+   "firmware": null,
+   "octets": 2264,
+   "sha256": "7f6d2a2a82bf117ae36720bab932d02fde2348701d2ade66861e5c8bf85ab02d",
+   "source": "reconstitue"
+  },
+  {
+   "fichier": "donnees/ere-001/reconstitue/2026-10-11.json",
+   "date": "2026-10-11",
+   "ere": 1,
+   "firmware": null,
+   "octets": 2905,
+   "sha256": "a8a8aa93835632212b65d9e0494d7141406591eaeecd737138b1eb6aa5ff65fd",
+   "source": "reconstitue"
+  },
+  {
+   "fichier": "donnees/ere-001/reconstitue/2026-10-12.json",
+   "date": "2026-10-12",
+   "ere": 1,
+   "firmware": null,
+   "octets": 2042,
+   "sha256": "f9d5bdcb5c08229c0366c136cf4f1c5b89a46d64cfda986127d0c4a48ba77b4d",
+   "source": "reconstitue"
+  }
+ ]
+}
