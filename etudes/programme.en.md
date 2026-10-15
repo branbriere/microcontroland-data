@@ -28,8 +28,9 @@ Do not attribute intention to an agent without a suitable protocol.
 **Question:** under what conditions does a population of 120 neural networks
 spread across 6 regions and an ESP32 gateway run sustainably?
 
-**Measures:** actual power consumption (currently estimated at 3.5 W for the
-country), available RAM, cycle duration, packets sent/received/lost, recovery
+**Measures:** actual power consumption (measured at the wall, charger included:
+6.8 W averaged over 24 h, 14–15 October 2026; the initial 3.5 W estimate
+counted the boards only), available RAM, cycle duration, packets sent/received/lost, recovery
 after failure, availability, cost of backups and of their compression.
 
 **Method:** distinguish simulated days from real time; repeat trials over

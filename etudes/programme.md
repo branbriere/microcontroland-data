@@ -28,7 +28,7 @@ Une propriété directement imposée par le code n'est pas une découverte
 **Question :** dans quelles conditions une population de 120 réseaux neuronaux
 répartis sur 6 régions et une passerelle ESP32 fonctionne-t-elle durablement ?
 
-**Mesures :** consommation réelle (actuellement estimée à 3,5 W pour le pays),
+**Mesures :** consommation réelle (mesurée au mur, chargeur compris : 6,8 W en moyenne sur 24 h, du 14 au 15 octobre 2026 ; l'estimation initiale de 3,5 W ne comptait que les cartes),
 RAM disponible, durée des cycles, paquets envoyés/reçus/perdus, reprises
 après panne, disponibilité, coût des sauvegardes et de leur compression.
 
