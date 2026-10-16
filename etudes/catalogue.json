@@ -1,5 +1,5 @@
 {
-  "miseAJour": "2026-10-13",
+  "miseAJour": "2026-10-16",
   "statuts": {
     "projet": {
       "fr": "Projet",
@@ -73,7 +73,8 @@
       "protocole": {
         "fr": "protocoles/02-regimes-preenregistrement.md",
         "en": "protocoles/02-regimes-preregistration.en.md"
-      }
+      },
+      "doi": "10.5281/zenodo.23418066"
     },
     {
       "id": "03",
