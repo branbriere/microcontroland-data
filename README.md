@@ -15,7 +15,7 @@ Ce dépôt contient les **données brutes** du pays, sa documentation et les ét
 | `donnees/ere-001/reconstitue/` | Les jours du 9 au 14 octobre 2026, publiés avant l'export brut, rebâtis à partir du journal. Marqués « reconstitué », avec leur propre manifeste. |
 | `outils/` | Le script de reconstitution (licence MIT). |
 | `documentation/` | Architecture, dictionnaire des données, historique des versions. |
-| `protocoles/` | Protocoles et pré-enregistrements, déposés avant l'analyse. |
+| `protocoles/` | Protocoles et pré-enregistrements, déposés avant l'analyse et archivés sur Zenodo ([liste et DOI](protocoles/README.md)). |
 | `etudes/` | [Programme des études](etudes/programme.md) et catalogue avec le statut de chacune. |
 
 ## Règles
@@ -52,7 +52,7 @@ This repository holds the country's **raw data**, its documentation and the stud
 | `donnees/ere-001/reconstitue/` | Days from 9 to 14 October 2026, published before the raw export, rebuilt from the newspaper. Marked "reconstitue" (rebuilt), with their own manifest. |
 | `outils/` | The rebuild script (MIT licence). |
 | `documentation/` | Architecture, data dictionary, version history. |
-| `protocoles/` | Protocols and pre-registrations, filed before analysis. |
+| `protocoles/` | Protocols and pre-registrations, filed before analysis and archived on Zenodo ([list and DOIs](protocoles/README.md)). |
 | `etudes/` | [Study programme](etudes/programme.en.md) and catalogue with each study's status. |
 
 Folder and field names are in French; the data dictionary gives their meaning in both languages.
