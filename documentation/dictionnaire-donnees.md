@@ -1,6 +1,6 @@
 # Dictionnaire des données
 
-*[English version](dictionnaire-donnees.en.md)* · Format des fichiers quotidiens : **1** (firmware 0.6, depuis le 15 octobre 2026)
+*[English version](dictionnaire-donnees.en.md)* · Format des fichiers quotidiens : **2** (firmware 0.7, depuis le 19 octobre 2026) ; format **1** (firmware 0.6) du 15 au 18 octobre 2026
 
 ## Règles générales
 
@@ -15,7 +15,7 @@
 
 | Champ | Type | Sens |
 | --- | --- | --- |
-| `format` | entier | Version du format (1). |
+| `format` | entier | Version du format (1 ; 2 depuis le firmware 0.7, qui ajoute `graines` et `heures[].prise`). |
 | `source` | texte | `passerelle` (mesuré) ; `reconstitue` pour les jours rebâtis après coup (dossier `reconstitue/`). |
 | `firmware` | texte | Version du programme de la passerelle, ex. `0.6`. |
 | `parametres` | objet | `heureDuPaysMs` (durée d'une heure du pays en ms), `regions`, `citoyensParRegion`, `connexionsParCerveau`, `idees` (nombre d'idées du lexique), `seuilMotCommun` (régions qui doivent s'accorder pour qu'un mot soit commun), `echelle` (255). |
@@ -32,6 +32,7 @@
 | `citoyens` | liste de 120 | Un objet par citoyen (ou `null` si sa région n'a jamais répondu). |
 | `langue` | objet | État de la langue commune. |
 | `journal` | objet | Renvoi vers l'édition (interprétation) : `edition`, `fichier` (chemin sur le site). |
+| `graines` | objet | Graines du hasard (format 2, voir plus bas). Absent des fichiers au format 1. |
 | `systeme` | objet | `notes` : événements techniques (voir plus bas). |
 
 ## `heures[]`
@@ -43,7 +44,8 @@
 | `utc` | Heure UTC réelle de l'enregistrement, ou `null` (heure Internet indisponible). |
 | `regions` | 6 entrées dans l'ordre Mines, Champs, Raffineries, Barrage, Port, Ville ; `null` si la région n'a pas répondu cette heure-là. |
 | `idee` | L'idée sur laquelle les régions ont proposé un mot cette heure-là : `id`, `fr`, `en`. `null` si aucune. |
-| `systeme` | `memoireLibre`, `psramLibre` (octets), `dureeHeureMs` (temps de la tournée radio), `paquetsPerdus` (depuis l'heure précédente) ; `null` si non mesuré. |
+| `prise` | Format 2 : relevé de la prise Shelly qui alimente tout le pays, lu par la passerelle juste après la tournée radio de l'heure, sur le réseau local. `puissanceW` (puissance instantanée, W) et `compteurWh` (compteur d'énergie cumulé de la prise, Wh), 3 décimales. La consommation moyenne entre deux heures = écart de `compteurWh` / durée. `null` si la prise n'a pas répondu. Le compteur repart de zéro si la prise est réinitialisée : un compteur qui baisse signale une remise à zéro, pas une consommation négative. |
+| `systeme` | `memoireLibre`, `psramLibre` (octets), `dureeHeureMs` (temps de la tournée radio), `paquetsPerdus` (paquets reçus mais jetés faute de place dans la file de réception de la passerelle, depuis l'heure précédente ; ce n'est pas le nombre de régions muettes, qui se lit dans `regions`) ; `null` si non mesuré. |
 
 ### `heures[].regions[]`
 
@@ -94,13 +96,27 @@
 
 | Champ | Sens |
 | --- | --- |
-| `motsCommuns` | Nombre de mots compris par au moins 5 régions. |
-| `idees[]` | Pour chaque idée apparue : `id`, `fr`, `en`, `motNational` (mot le plus partagé), `accord` (régions d'accord, 0-6), `commun` (vrai si accord ≥ 5). |
-| `comprehension` | Matrice 6 × 6 : compréhension entre régions, 0-255 (255 sur la diagonale). |
+| `motsCommuns` | Nombre d'idées dont le dernier dépouillement donne au moins 5 régions d'accord. |
+| `idees[]` | Pour chaque idée apparue : `id`, `fr`, `en`, `motNational` (mot le plus partagé), `accord` (régions d'accord, 0-6), `commun` (vrai si accord ≥ 5). `motNational` et `accord` sont le résultat du **dernier dépouillement** de l'idée (dernière heure où elle a été demandée et où au moins 2 régions ont répondu), conservé ensuite : ce n'est pas l'état du jour. |
+| `comprehension` | Matrice 6 × 6 : compréhension entre régions, 0-255 (255 sur la diagonale). Moyenne mobile (pas de 1/16) mise à jour à chaque dépouillement. |
+
+## `graines` (format 2)
+
+Le hasard du pays réel n'est **pas rejouable** : chaque carte mélange un aléa matériel (bruit radio de l'ESP32) à sa graine à chaque démarrage. Ce bloc le trace et le date, sans permettre de le rejouer. La reproductibilité passe par le simulateur sur PC (graines fixes). Générateur : xoshiro128** initialisé par splitmix32 (`mcl_rng.h`). Les graines sont des entiers non signés de 32 bits (0 à 4 294 967 295).
+
+| Champ | Sens |
+| --- | --- |
+| `ere` | Graine de l'ère, tirée par la passerelle au début de l'ère (elle fixe aussi les prénoms). |
+| `passerelle` | Dernières graines connues de la passerelle (objet ci-dessous) ; `null` si inconnues. |
+| `regions` | 6 objets dans l'ordre Mines, Champs, Raffineries, Barrage, Port, Ville : dernières graines annoncées par chaque région ; `null` si la passerelle ne les a jamais reçues (région muette depuis l'installation du firmware 0.7, ou mémoire de la passerelle perdue). |
+| `nouvelles` | Graines **nouvelles** reçues depuis l'édition précédente, dans l'ordre d'arrivée, avec `carte` (`passerelle` ou nom de la région) : démarrage ou redémarrage d'une carte, nouvelle population (Grand Reset), ou première réception après une perte de mémoire de la passerelle. Une même annonce répétée n'est notée qu'une fois. |
+| `nouvellesNonNotees` | Nombre de nouvelles graines au-delà de 24 dans la journée, comptées mais non détaillées. |
+
+Chaque objet de graines : `ere` (ère annoncée par la carte ; 0 = population provisoire d'une carte neuve, remplacée dès le premier TICK), `grainePopulation` (régions : graine qui a créé la population de 20 cerveaux ; passerelle : graine de l'ère), `graineHasard` (graine réellement donnée au générateur : au redémarrage d'une région, graine de population ⊕ heures vécues ⊕ aléa matériel ; à la création d'une population, la graine de population elle-même), `tick` (heure du pays à la réception par la passerelle), `tickCarte` (dernière heure du pays vécue par la carte), `utc` (heure réelle de réception, `null` si inconnue).
 
 ## `systeme.notes[]`
 
-`tick`, `utc`, `type`, `detail`. Types : `demarrage` (avec la cause du redémarrage), `maintenance`, `publication` (échec d'un envoi), `perte` (fichier brut abandonné faute de place). Ces notes expliquent les trous des données ; elles ne les comblent pas.
+`tick`, `utc`, `type`, `detail`. Types : `demarrage` (avec la cause du redémarrage), `maintenance`, `publication` (échec d'un envoi), `perte` (fichier brut abandonné faute de place), `version` (firmware 0.7 : paquet radio d'une carte qui n'a pas la même version du protocole, refusé ; au plus une note par heure), `wifi` (firmware 0.7 : connexion perdue, relance par la passerelle — la première puis une par heure —, rétablissement avec sa durée en minutes, le nombre de relances et le canal). Ces notes expliquent les trous des données ; elles ne les comblent pas.
 
 ## Fichiers reconstitués (`donnees/ere-001/reconstitue/`)
 

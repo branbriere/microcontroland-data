@@ -1,6 +1,6 @@
 # Data dictionary
 
-*[Version française](dictionnaire-donnees.md)* · Daily file format: **1** (firmware 0.6, from 15 October 2026)
+*[Version française](dictionnaire-donnees.md)* · Daily file format: **2** (firmware 0.7, from 19 October 2026); format **1** (firmware 0.6) from 15 to 18 October 2026
 
 ## General rules
 
@@ -15,7 +15,7 @@
 
 | Field | Type | Meaning |
 | --- | --- | --- |
-| `format` | integer | Format version (1). |
+| `format` | integer | Format version (1; 2 from firmware 0.7, which adds `graines` and `heures[].prise`). |
 | `source` | text | `passerelle` (measured by the gateway); `reconstitue` for days rebuilt afterwards (`reconstitue/` folder). |
 | `firmware` | text | Gateway firmware version, e.g. `0.6`. |
 | `parametres` | object | `heureDuPaysMs` (length of a country hour in ms), `regions`, `citoyensParRegion` (citizens per region), `connexionsParCerveau` (connections per brain), `idees` (ideas in the lexicon), `seuilMotCommun` (regions that must agree for a word to be shared), `echelle` (255). |
@@ -32,6 +32,7 @@
 | `citoyens` | list of 120 | One object per citizen (`null` if their region never answered). |
 | `langue` | object | State of the shared language. |
 | `journal` | object | Pointer to the issue (interpretation): `edition`, `fichier` (path on the website). |
+| `graines` | object | Random seeds (format 2, see below). Absent from format 1 files. |
 | `systeme` | object | `notes`: technical events (see below). |
 
 ## `heures[]` (hours)
@@ -43,7 +44,8 @@
 | `utc` | Real UTC time of the record, or `null` (no Internet time). |
 | `regions` | 6 entries in the order Mines, Fields, Refineries, Dam, Harbour, City; `null` if the region did not answer that hour. |
 | `idee` | The idea the regions proposed a word for that hour: `id`, `fr`, `en`. `null` if none. |
-| `systeme` | `memoireLibre` (free heap), `psramLibre` (free PSRAM, bytes), `dureeHeureMs` (radio round time), `paquetsPerdus` (packets lost since the previous hour); `null` if not measured. |
+| `prise` | Format 2: reading of the Shelly smart plug that powers the whole country, taken by the gateway right after the hour's radio round, on the local network. `puissanceW` (instantaneous power, W) and `compteurWh` (the plug's cumulative energy counter, Wh), 3 decimals. Average consumption between two hours = difference of `compteurWh` / duration. `null` if the plug did not answer. The counter restarts from zero if the plug is reset: a decreasing counter signals a reset, not negative consumption. |
+| `systeme` | `memoireLibre` (free heap), `psramLibre` (free PSRAM, bytes), `dureeHeureMs` (radio round time), `paquetsPerdus` (packets received but discarded because the gateway's receive queue was full, since the previous hour; this is not the number of silent regions, which is read from `regions`); `null` if not measured. |
 
 ### `heures[].regions[]`
 
@@ -94,13 +96,27 @@
 
 | Field | Meaning |
 | --- | --- |
-| `motsCommuns` | Number of words understood by at least 5 regions. |
-| `idees[]` | For each idea that has appeared: `id`, `fr`, `en`, `motNational` (most shared word), `accord` (regions agreeing, 0-6), `commun` (true if agreement ≥ 5). |
-| `comprehension` | 6 × 6 matrix: understanding between regions, 0-255 (255 on the diagonal). |
+| `motsCommuns` | Number of ideas whose latest count has at least 5 regions agreeing. |
+| `idees[]` | For each idea that has appeared: `id`, `fr`, `en`, `motNational` (most shared word), `accord` (regions agreeing, 0-6), `commun` (true if agreement ≥ 5). `motNational` and `accord` are the result of the idea's **latest count** (the last hour in which it was asked and at least 2 regions answered), kept until the next one: they are not the state of the day. |
+| `comprehension` | 6 × 6 matrix: understanding between regions, 0-255 (255 on the diagonal). Moving average (step 1/16) updated at each count. |
+
+## `graines` (random seeds, format 2)
+
+The real country's randomness is **not replayable**: at every start-up each board mixes hardware entropy (ESP32 radio noise) into its seed. This block records and dates it; it does not make it replayable. Reproducibility comes from the PC simulator (fixed seeds). Generator: xoshiro128** seeded by splitmix32 (`mcl_rng.h`). Seeds are unsigned 32-bit integers (0 to 4,294,967,295).
+
+| Field | Meaning |
+| --- | --- |
+| `ere` | Era seed, drawn by the gateway when the era begins (it also sets the names). |
+| `passerelle` | Latest known gateway seeds (object below); `null` if unknown. |
+| `regions` | 6 objects in the order Mines, Champs, Raffineries, Barrage, Port, Ville: latest seeds announced by each region; `null` if the gateway never received them (region silent since firmware 0.7 was installed, or gateway memory lost). |
+| `nouvelles` | **New** seeds received since the previous edition, in order of arrival, with `carte` (`passerelle` or the region's name): a board starting or restarting, a new population (Great Reset), or the first reception after the gateway lost its memory. A repeated announcement is recorded once. |
+| `nouvellesNonNotees` | Number of new seeds beyond 24 in a day, counted but not detailed. |
+
+Each seed object: `ere` (era announced by the board; 0 = provisional population of a new board, replaced at the first TICK), `grainePopulation` (regions: seed that created the population of 20 brains; gateway: era seed), `graineHasard` (seed actually given to the generator: when a region restarts, population seed XOR hours lived XOR hardware entropy; when a population is created, the population seed itself), `tick` (country hour when the gateway received it), `tickCarte` (last country hour lived by the board), `utc` (real reception time, `null` if unknown).
 
 ## `systeme.notes[]` (system notes)
 
-`tick`, `utc`, `type`, `detail`. Types: `demarrage` (start-up, with the reset cause), `maintenance`, `publication` (a failed upload), `perte` (raw file dropped for lack of space). These notes explain gaps in the data; they never fill them.
+`tick`, `utc`, `type`, `detail`. Types: `demarrage` (start-up, with the reset cause), `maintenance`, `publication` (a failed upload), `perte` (raw file dropped for lack of space), `version` (firmware 0.7: radio packet from a board running another protocol version, rejected; at most one note per hour), `wifi` (firmware 0.7: connection lost, reconnection attempt by the gateway — the first, then one per hour —, recovery with its duration in minutes, number of attempts and channel). These notes explain gaps in the data; they never fill them.
 
 ## Rebuilt files (`donnees/ere-001/reconstitue/`)
 
