@@ -38,6 +38,24 @@
    "octets": 2042,
    "sha256": "f9d5bdcb5c08229c0366c136cf4f1c5b89a46d64cfda986127d0c4a48ba77b4d",
    "source": "reconstitue"
+  },
+  {
+   "fichier": "donnees/ere-001/reconstitue/2026-10-13.json",
+   "date": "2026-10-13",
+   "ere": 1,
+   "firmware": null,
+   "octets": 2433,
+   "sha256": "08bb36374c611a08547cf00e7100feb09a72687ad7d7eb0cab20e78908577e08",
+   "source": "reconstitue"
+  },
+  {
+   "fichier": "donnees/ere-001/reconstitue/2026-10-14.json",
+   "date": "2026-10-14",
+   "ere": 1,
+   "firmware": null,
+   "octets": 2329,
+   "sha256": "08c7310499637e29cb623385fd8cc77d342c756bd5067846d049d648c825652f",
+   "source": "reconstitue"
   }
  ]
 }
