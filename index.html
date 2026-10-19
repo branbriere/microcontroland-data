@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microcontrôland — open data</title>
+<meta name="description" content="Open data, documentation and studies from Microcontrôland, a multi-agent system running on seven ESP32-S3 microcontrollers. Données ouvertes, documentation et études.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Crect width=%2216%22 height=%2216%22 fill=%22%23050b07%22/%3E%3Ccircle cx=%228%22 cy=%228%22 r=%224%22 fill=%22%236dff9c%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="site/style.css">
+</head>
+<body>
+<header class="bandeau">
+  <div class="marque">
+    <span class="logo" aria-hidden="true">◈</span>
+    <span>microcontrôland<span class="dim">/data</span></span>
+  </div>
+  <div class="langues" role="group" aria-label="Langue / Language">
+    <button type="button" data-lang="en">EN</button>
+    <button type="button" data-lang="fr">FR</button>
+  </div>
+</header>
+
+<main>
+  <section class="tete">
+    <div class="tete-texte">
+      <h1 data-l="titre"></h1>
+      <p class="sous-titre" data-l="sousTitre"></p>
+      <form class="recherche" role="search" onsubmit="return false">
+        <label for="q" class="cache" data-l="rechercher"></label>
+        <input id="q" type="search" autocomplete="off" data-lp="placeholder">
+        <ul id="resultats" class="resultats" aria-live="polite"></ul>
+      </form>
+    </div>
+    <figure class="cerveau">
+      <canvas id="cerveau" width="420" height="420" aria-describedby="legende-cerveau"></canvas>
+      <figcaption id="legende-cerveau" data-l="legendeCerveau"></figcaption>
+    </figure>
+  </section>
+
+  <nav class="icones" aria-label="Sections">
+    <a href="#donnees"><span class="ic" aria-hidden="true">▤</span><span data-l="icDonnees"></span></a>
+    <a href="#etudes"><span class="ic" aria-hidden="true">⌬</span><span data-l="icEtudes"></span></a>
+    <a href="#protocoles"><span class="ic" aria-hidden="true">⧗</span><span data-l="icProtocoles"></span></a>
+    <a href="#documentation"><span class="ic" aria-hidden="true">≣</span><span data-l="icDoc"></span></a>
+    <a href="#corrections"><span class="ic" aria-hidden="true">✎</span><span data-l="icCorrections"></span></a>
+    <a href="#indice"><span class="ic" aria-hidden="true">◎</span><span data-l="icIndice"></span></a>
+  </nav>
+
+  <section id="etat" class="cadre etat" aria-labelledby="etat-titre">
+    <h2 id="etat-titre"><span class="ic" aria-hidden="true">▣</span> <span data-l="etatTitre"></span></h2>
+    <dl>
+      <dt data-l="etatCollecte"></dt><dd id="etat-collecte">…</dd>
+      <dt data-l="etatIntegrite"></dt><dd><span id="etat-integrite">…</span> <button type="button" id="verifier-tout" data-l="verifierTout"></button></dd>
+      <dt data-l="etatReponses"></dt><dd id="etat-reponses">…</dd>
+      <dt data-l="etatIncidents"></dt><dd><a href="#corrections" data-l="etatRegistre"></a></dd>
+    </dl>
+  </section>
+
+  <section id="accueil" class="cadre">
+    <div lang="fr">
+      <h2>Microcontrôland : données ouvertes d'une société d'agents embarquée</h2>
+      <p>Microcontrôland est un système multi-agents qui tourne en continu sur sept microcontrôleurs ESP32-S3 : une passerelle et six régions, reliées par radio ESP-NOW. Il compte 120 agents. Chacun a des traits individuels, des variables d'état (satisfaction, peur, colère, foi) et un petit réseau de neurones (9 entrées, 6 neurones cachés, 3 sorties, 81 poids), qui apprend par renforcement. Une heure simulée dure une heure réelle. Chaque jour, le système produit un fichier brut horodaté, avec son empreinte SHA-256.</p>
+      <p>Ce dépôt rassemble ces données brutes, la documentation et les études. Les fichiers publiés ne sont jamais modifiés après publication. Les erreurs sont consignées dans un journal des corrections daté.</p>
+      <h3>Ce que j'affirme, et ce que je n'affirme pas</h3>
+      <p>Je publie les propriétés observées et les propriétés absentes. Les mots « colère », « mémoire » ou « langue » désignent des variables et des processus informatiques. Ils ne désignent ni des expériences vécues ni une conscience. Le tableau des critères mesure une proximité avec une grille explicite et versionnée. Il ne dit pas que ces agents sont vivants. Un mécanisme prévu n'est jamais présenté comme existant.</p>
+      <h3>Vous êtes invités à me contredire</h3>
+      <p>Les hypothèses sont formulées avant que les données de test ne soient regardées. Chaque pré-enregistrement dit ce qui réfuterait l'hypothèse. Si vos analyses confirment, nuancent ou réfutent une hypothèse ou une étude publiée ici, je veux le savoir, et un résultat négatif est publié comme un résultat positif. Pour signaler une erreur ou proposer une analyse, ouvrez une <a href="https://github.com/branbriere/microcontroland-data/issues"><i>issue</i></a> sur le dépôt : chaque correction acceptée est datée et reportée dans le journal des corrections.</p>
+      <h3>Reproductibilité</h3>
+      <p>Le système réel n'est pas rejouable : son générateur aléatoire est réensemencé par le matériel à chaque redémarrage, et les graines sont publiées dans chaque fichier. La reproduction exacte passe par le simulateur à graines fixes. Le code du firmware sera publié avec les études. D'ici là, les données, les formats et les protocoles sont publics.</p>
+      <h3>Licences et citation</h3>
+      <p>Données sous CC BY 4.0, code sous MIT. Auteur : Bran Brière, chercheur indépendant (<a href="https://orcid.org/0009-0003-0439-8028">ORCID 0009-0003-0439-8028</a>). Merci de citer le DOI de la version utilisée (<a href="https://github.com/branbriere/microcontroland-data/blob/main/CITATION.cff">CITATION.cff</a>).</p>
+    </div>
+    <div lang="en">
+      <h2>Microcontrôland: open data from an embedded agent society</h2>
+      <p>Microcontrôland is a multi-agent system running continuously on seven ESP32-S3 microcontrollers: one gateway and six regions, linked by ESP-NOW radio. It hosts 120 agents. Each agent has individual traits, state variables (satisfaction, fear, anger, faith) and a small neural network (9 inputs, 6 hidden units, 3 outputs, 81 weights) trained by reinforcement. One simulated hour lasts one real hour. Every day the system produces a time-stamped raw file with its SHA-256 hash.</p>
+      <p>This repository holds the raw data, the documentation and the studies. Published files are never modified after publication. Errors are recorded in a dated corrections log.</p>
+      <h3>What I claim, and what I do not</h3>
+      <p>I report the properties I observe and the properties that are absent. Words such as "anger", "memory" or "language" refer to computational variables and processes. They do not refer to lived experience or consciousness. The criteria table measures proximity to an explicit, versioned grid. It does not state that these agents are alive. A planned mechanism is never presented as an existing one.</p>
+      <h3>You are invited to prove me wrong</h3>
+      <p>Hypotheses are written down before the test data are examined. Each preregistration states what would refute it. If your analyses confirm, qualify or refute a hypothesis or a study published here, I want to know, and a negative result is published just like a positive one. To report an error or propose an analysis, open an <a href="https://github.com/branbriere/microcontroland-data/issues">issue</a> on the repository: every accepted correction is dated and entered in the corrections log.</p>
+      <h3>Reproducibility</h3>
+      <p>The physical system cannot be replayed: its random generator is reseeded from hardware at every restart, and the seeds are published in every file. Exact reproduction relies on the fixed-seed simulator. The firmware source will be released together with the studies. Until then, the data, formats and protocols are public.</p>
+      <h3>Licences and citation</h3>
+      <p>Data under CC BY 4.0, code under MIT. Author: Bran Brière, independent researcher (<a href="https://orcid.org/0009-0003-0439-8028">ORCID 0009-0003-0439-8028</a>). Please cite the DOI of the version you use (<a href="https://github.com/branbriere/microcontroland-data/blob/main/CITATION.cff">CITATION.cff</a>).</p>
+    </div>
+  </section>
+
+  <section id="indice" class="cadre">
+    <h2 data-l="indiceTitre"></h2>
+    <p class="note" data-l="indiceNote"></p>
+    <div class="tableau-defile">
+      <table id="table-criteres">
+        <thead><tr><th>#</th><th data-l="colAptitude"></th><th data-l="colEtat"></th><th data-l="colMesurable"></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="donnees" class="cadre">
+    <h2 data-l="donneesTitre"></h2>
+    <p class="note" data-l="donneesNote"></p>
+    <div class="tableau-defile">
+      <table id="table-donnees">
+        <thead><tr><th data-l="colDate"></th><th data-l="colSource"></th><th>Firmware</th><th data-l="colTaille"></th><th>SHA-256</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="etudes" class="cadre">
+    <h2 data-l="etudesTitre"></h2>
+    <p class="note" data-l="etudesNote"></p>
+    <div class="tableau-defile">
+      <table id="table-etudes">
+        <thead><tr><th>#</th><th data-l="colEtude"></th><th data-l="colStatut"></th><th data-l="colMoment"></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="protocoles" class="cadre">
+    <h2 data-l="protocolesTitre"></h2>
+    <p class="note" data-l="protocolesNote"></p>
+    <ul class="liens" id="liste-protocoles"></ul>
+  </section>
+
+  <section id="documentation" class="cadre">
+    <h2 data-l="docTitre"></h2>
+    <ul class="liens" id="liste-doc"></ul>
+  </section>
+
+  <section id="corrections" class="cadre">
+    <h2 data-l="correctionsTitre"></h2>
+    <p data-l="correctionsNote"></p>
+    <p><a id="lien-registre" href="#" data-l="registreLien"></a></p>
+  </section>
+</main>
+
+<footer>
+  <p data-l="pied"></p>
+</footer>
+
+<script src="site/cerveau.js"></script>
+<script src="site/app.js"></script>
+</body>
+</html>

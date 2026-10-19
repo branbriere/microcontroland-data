@@ -1,0 +1,38 @@
+{
+ "grille": "v1",
+ "statutGrille": {"fr": "brouillon, non figée", "en": "draft, not frozen"},
+ "etat": "en-attente",
+ "blocs": {
+  "A": {"fr": "Individu et adaptation", "en": "Individual and adaptation"},
+  "B": {"fr": "Société et communication", "en": "Society and communication"},
+  "C": {"fr": "Générations et évolution", "en": "Generations and evolution"},
+  "D": {"fr": "Frontières conceptuelles", "en": "Conceptual frontiers"}
+ },
+ "mesurable": {
+  "aujourdhui": {"fr": "données actuelles (format 2)", "en": "current data (format 2)"},
+  "code": {"fr": "lecture du code (à la publication du firmware)", "en": "code reading (when the firmware is released)"},
+  "0.8": {"fr": "firmware 0.8 (export des poids)", "en": "firmware 0.8 (weight export)"},
+  "maj5": {"fr": "mise à jour 5 (générations)", "en": "update 5 (generations)"},
+  "plus-tard": {"fr": "plus tard (phase 3)", "en": "later (phase 3)"}
+ },
+ "criteres": [
+  {"id": "apt01", "n": "01", "bloc": "A", "fr": "Individualité", "en": "Individuality", "mesurable": "aujourdhui", "motsCles": ["identité", "état interne", "trajectoire", "identity", "internal state", "trajectory"]},
+  {"id": "apt02", "n": "02", "bloc": "A", "fr": "Perception", "en": "Perception", "mesurable": "aujourdhui", "motsCles": ["milieu", "catastrophe", "environment", "disaster"]},
+  {"id": "apt03", "n": "03", "bloc": "A", "fr": "Réactivité", "en": "Reactivity", "mesurable": "aujourdhui", "motsCles": ["décision", "circonstances", "rebelles", "decision", "circumstances", "rebels"]},
+  {"id": "apt04", "n": "04", "bloc": "A", "fr": "Mémoire", "en": "Memory", "mesurable": "aujourdhui", "motsCles": ["expérience passée", "past experience"]},
+  {"id": "apt05", "n": "05", "bloc": "A", "fr": "Apprentissage", "en": "Learning", "mesurable": "0.8", "motsCles": ["poids", "renforcement", "weights", "reinforcement"]},
+  {"id": "apt06", "n": "06", "bloc": "A", "fr": "Régulation interne", "en": "Internal regulation", "mesurable": "aujourdhui", "motsCles": ["homéostasie", "choc", "récupération", "homeostasis", "shock", "recovery"]},
+  {"id": "apt07", "n": "07", "bloc": "A", "fr": "Autonomie décisionnelle", "en": "Decisional autonomy", "mesurable": "code", "motsCles": ["indépendance", "décentralisé", "independence", "decentralised"], "enAvant": true},
+  {"id": "apt08", "n": "08", "bloc": "B", "fr": "Interactions sociales", "en": "Social interactions", "mesurable": "aujourdhui", "motsCles": ["influence", "régions", "regions"]},
+  {"id": "apt09", "n": "09", "bloc": "B", "fr": "Communication", "en": "Communication", "mesurable": "aujourdhui", "motsCles": ["langue", "mots communs", "convention", "language", "shared words", "naming game"]},
+  {"id": "apt10", "n": "10", "bloc": "B", "fr": "Transmission culturelle", "en": "Cultural transmission", "mesurable": "maj5", "motsCles": ["culture", "générations", "generations"]},
+  {"id": "apt11", "n": "11", "bloc": "C", "fr": "Reproduction", "en": "Reproduction", "mesurable": "maj5", "motsCles": ["naissance", "birth"]},
+  {"id": "apt12", "n": "12", "bloc": "C", "fr": "Hérédité", "en": "Heredity", "mesurable": "maj5", "motsCles": ["parents", "généalogie", "genealogy"]},
+  {"id": "apt13", "n": "13", "bloc": "C", "fr": "Variation héritable", "en": "Heritable variation", "mesurable": "maj5", "motsCles": ["mutation", "variation"]},
+  {"id": "apt14", "n": "14", "bloc": "C", "fr": "Sélection", "en": "Selection", "mesurable": "maj5", "motsCles": ["succès reproductif", "reproductive success", "darwin"]},
+  {"id": "apt15", "n": "15", "bloc": "C", "fr": "Adaptation collective", "en": "Collective adaptation", "mesurable": "0.8", "motsCles": ["population", "contraintes", "constraints"]},
+  {"id": "apt16", "n": "16", "bloc": "C", "fr": "Évolution ouverte", "en": "Open-ended evolution", "mesurable": "plus-tard", "motsCles": ["nouveauté", "novelty", "open-ended"]},
+  {"id": "apt17", "n": "17", "bloc": "D", "fr": "Maintien de soi", "en": "Self-maintenance", "mesurable": "plus-tard", "motsCles": ["autopoïèse", "précarité", "autopoiesis", "precariousness"]},
+  {"id": "apt18", "n": "18", "bloc": "D", "fr": "Individualité causale", "en": "Causal individuality", "mesurable": "0.8", "motsCles": ["états internes", "internal states"]}
+ ]
+}
