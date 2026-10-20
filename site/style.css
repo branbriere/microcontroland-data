@@ -86,6 +86,8 @@ th, td { border-bottom: 1px solid var(--ligne); padding: .45rem .6rem; text-alig
 th { color: var(--ligne-vive); font-weight: 600; white-space: nowrap; }
 td.code { font-family: ui-monospace, Menlo, monospace; font-size: .78rem; word-break: break-all; color: var(--texte-doux); }
 tr.bloc td { color: var(--accent); font-family: ui-monospace, Menlo, monospace; padding-top: .9rem; border-bottom-color: var(--ligne-vive); }
+td .note-critere { display: block; font-size: .78rem; color: var(--texte-doux); margin-top: .15rem; }
+td.plafond { font-family: ui-monospace, Menlo, monospace; text-align: center; }
 tr.en-avant td:nth-child(2) { color: var(--accent); font-weight: 600; }
 .etat-attente { color: var(--attente); white-space: nowrap; }
 .etiquette { display: inline-block; border: 1px solid var(--ligne); padding: 0 .4rem; font-size: .78rem; white-space: nowrap; }

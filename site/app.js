@@ -13,8 +13,8 @@
       icDonnees: 'Données brutes', icEtudes: 'Études', icProtocoles: 'Pré-enregistrements',
       icDoc: 'Documentation', icCorrections: 'Corrections', icIndice: 'Critères de vie artificielle',
       indiceTitre: 'Critères de vie artificielle : ce que les données montrent',
-      indiceNote: 'Grille v1 de 18 aptitudes (brouillon, non figée). Chaque test sera écrit et daté avant le premier calcul. Les états s\'affichent à partir de l\'âge de la Curiosité du système (un stade de développement défini dans le firmware, jour 60 au plus tôt). Ce tableau mesure une proximité avec une grille ; il ne dit pas que les agents sont vivants ou conscients.',
-      colAptitude: 'Aptitude', colEtat: 'État', colMesurable: 'Mesurable avec',
+      indiceNote: 'Grille v2 de 18 aptitudes (validée le 19 octobre 2026, révisée après lecture de sept publications). Les seuils chiffrés de chaque test seront écrits et datés avant le premier calcul. Le plafond est la note maximale possible avec la conception actuelle du système, pas un résultat. Les états s\'affichent à partir de l\'âge de la Curiosité du système (un stade de développement défini dans le firmware, jour 60 au plus tôt). Ce tableau mesure une proximité avec une grille ; il ne dit pas que les agents sont vivants ou conscients.',
+      colAptitude: 'Aptitude', colEtat: 'État', colMesurable: 'Mesurable avec', colPlafond: 'Plafond', lienGrille: 'Lire la grille v2 : tests et publications',
       enAttente: 'en attente',
       donneesTitre: 'Données brutes',
       donneesNote: 'Un fichier par jour, jamais modifié après publication. Les jours du 9 au 14 octobre 2026 sont reconstitués à partir du journal publié (pas de données horaires). Vérifiez chaque fichier avec son empreinte SHA-256.',
@@ -49,8 +49,8 @@
       icDonnees: 'Raw data', icEtudes: 'Studies', icProtocoles: 'Preregistrations',
       icDoc: 'Documentation', icCorrections: 'Corrections', icIndice: 'Artificial-life criteria',
       indiceTitre: 'Artificial-life criteria: what the data show',
-      indiceNote: 'Grid v1 of 18 capacities (draft, not frozen). Each test will be written and dated before the first computation. States are displayed from the system\'s Age of Curiosity onwards (a developmental stage defined in the firmware, day 60 at the earliest). This table measures proximity to a grid; it does not state that the agents are alive or conscious.',
-      colAptitude: 'Capacity', colEtat: 'State', colMesurable: 'Measurable with',
+      indiceNote: 'Grid v2 of 18 capacities (approved on 19 October 2026, revised after reading seven publications). The numerical threshold of each test will be written and dated before the first computation. The ceiling is the highest score possible with the current design of the system, not a result. States are displayed from the system\'s Age of Curiosity onwards (a developmental stage defined in the firmware, day 60 at the earliest). This table measures proximity to a grid; it does not state that the agents are alive or conscious.',
+      colAptitude: 'Capacity', colEtat: 'State', colMesurable: 'Measurable with', colPlafond: 'Ceiling', lienGrille: 'Read grid v2: tests and publications',
       enAttente: 'pending',
       donneesTitre: 'Raw data',
       donneesNote: 'One file per day, never modified after publication. Days from 9 to 14 October 2026 are rebuilt from the published newspaper (no hourly data). Check each file against its SHA-256 hash.',
@@ -108,18 +108,21 @@
     const tb = document.querySelector('#table-criteres tbody');
     tb.replaceChildren();
     const c = donnees.criteres;
-    if (!c) { tb.append(el('tr', {}, el('td', { colspan: 4 }, T[lang].chargement))); return; }
+    if (!c) { tb.append(el('tr', {}, el('td', { colspan: 5 }, T[lang].chargement))); return; }
     let bloc = '';
     for (const k of c.criteres) {
       if (k.bloc !== bloc) {
         bloc = k.bloc;
-        tb.append(el('tr', { class: 'bloc' }, el('td', { colspan: 4 }, bloc + '. ' + c.blocs[bloc][lang])));
+        tb.append(el('tr', { class: 'bloc' }, el('td', { colspan: 5 }, bloc + '. ' + c.blocs[bloc][lang])));
       }
       tb.append(el('tr', { id: k.id, class: k.enAvant ? 'en-avant' : '' },
-        el('td', {}, k.n), el('td', {}, k[lang]),
+        el('td', {}, k.n), el('td', {}, k[lang], k.note ? el('span', { class: 'note-critere' }, k.note[lang]) : ''),
         el('td', {}, el('span', { class: 'etat-attente' }, '… ' + T[lang].enAttente)),
-        el('td', {}, el('span', { class: 'etiquette' }, c.mesurable[k.mesurable][lang]))));
+        el('td', {}, el('span', { class: 'etiquette' }, c.mesurable[k.mesurable][lang])),
+        el('td', { class: 'plafond' }, lang === 'fr' ? String(k.plafond).replace('.', ',') : String(k.plafond))));
     }
+    const lg = document.getElementById('lien-grille');
+    if (lg && c.document) lg.href = GH + c.document[lang];
   }
 
   function rendreJours() {
