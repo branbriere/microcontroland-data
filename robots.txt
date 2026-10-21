@@ -1,7 +1,8 @@
 # Microcontrôland : données et études (donnees.microcontroland.org)
 # Tous les robots sont les bienvenus, humains et IA. Rien n'est bloqué.
 # All robots are welcome. Nothing is blocked.
-# Point d'entrée / Start here: /llms.txt
+# Point d'entrée / Start here: /llms.txt ; sans JavaScript / without JavaScript: /plan.html
 User-agent: *
 Allow: /
 
+Sitemap: https://donnees.microcontroland.org/sitemap.xml
