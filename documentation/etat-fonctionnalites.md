@@ -63,6 +63,7 @@ Le firmware n'est pas encore public (il le sera avec les études). D'ici là, la
 | Domaine microcontroland.org (journal sur www, données sur donnees) | En service | 21 oct. 2026 | — |
 | Journal lisible sans JavaScript (`journal.txt`, `/texte/`) | En service | 21 oct. 2026 | [journal.txt](https://www.microcontroland.org/journal.txt) |
 | Histoire et langue sans JavaScript, robots.txt, plan du site | En service | 21 oct. 2026 | [/texte/](https://www.microcontroland.org/texte/) |
+| Page « Découvrir le pays en 5 minutes » (état du pays mis à jour chaque soir) | En service | 21 oct. 2026 | [decouvrir.html](https://www.microcontroland.org/decouvrir.html) |
 | Plan statique du site des données | En service | 21 oct. 2026 | [plan.html](https://donnees.microcontroland.org/plan.html) |
 | Relevé anonyme des robots qui se déclarent (jour, robot, page, statut ; ni IP ni cookie) | En service | 21 oct. 2026 | export mensuel prévu dans `agents-ia/` |
 | Tableau des 18 critères de vie artificielle (grille v2) | En service, états « en attente » | 19 oct. 2026 | [grille-criteres-v2.md](grille-criteres-v2.md) |

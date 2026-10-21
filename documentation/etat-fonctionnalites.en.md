@@ -63,6 +63,7 @@ The firmware is not public yet (it will be released with the studies). Until the
 | microcontroland.org domain (newspaper on www, data on donnees) | In service | 21 Oct 2026 | — |
 | Newspaper readable without JavaScript (`journal.txt`, `/texte/`) | In service | 21 Oct 2026 | [journal.txt](https://www.microcontroland.org/journal.txt) |
 | History and language without JavaScript, robots.txt, sitemap | In service | 21 Oct 2026 | [/texte/](https://www.microcontroland.org/texte/) |
+| "Discover the country in 5 minutes" page (country's state updated every evening) | In service | 21 Oct 2026 | [decouvrir.html](https://www.microcontroland.org/decouvrir.html) |
 | Static index of the data site | In service | 21 Oct 2026 | [plan.html](https://donnees.microcontroland.org/plan.html) |
 | Anonymous log of self-declared robots (day, robot, page, status; no IP, no cookie) | In service | 21 Oct 2026 | monthly export planned in `agents-ia/` |
 | Table of the 18 artificial-life criteria (grid v2) | In service, states "pending" | 19 Oct 2026 | [grille-criteres-v2.en.md](grille-criteres-v2.en.md) |
