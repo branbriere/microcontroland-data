@@ -1,0 +1,29 @@
+{
+ "upload_type": "dataset",
+ "title": "Microcontrôland — données scientifiques / scientific data",
+ "creators": [
+  {
+   "name": "Brière, Bran",
+   "orcid": "0009-0003-0439-8028"
+  }
+ ],
+ "description": "Raw daily data from Microcontrôland, a fictional country simulated by seven ESP32 microcontrollers hosting 120 small neural-network citizens: daily files, SHA-256 manifests, protocols, studies. Monthly archive: nothing is modified, each version adds the days published since the previous one.<br>Données brutes quotidiennes de Microcontrôland, pays fictif simulé par sept microcontrôleurs ESP32 et 120 citoyens réseaux de neurones : fichiers quotidiens, manifestes SHA-256, protocoles, études. Archive mensuelle : rien n'est modifié, chaque version ajoute les jours publiés depuis la précédente.",
+ "license": "cc-by-4.0",
+ "access_right": "open",
+ "keywords": [
+  "artificial society",
+  "multi-agent simulation",
+  "neural networks",
+  "microcontrollers",
+  "ESP32",
+  "language emergence",
+  "naming game"
+ ],
+ "related_identifiers": [
+  {
+   "identifier": "https://github.com/branbriere/microcontroland-data",
+   "relation": "isSupplementTo",
+   "scheme": "url"
+  }
+ ]
+}

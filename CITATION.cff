@@ -6,6 +6,7 @@ authors:
   - family-names: "Brière"
     given-names: "Bran"
     orcid: "https://orcid.org/0009-0003-0439-8028"
+doi: "10.5281/zenodo.23538358"
 repository-code: "https://github.com/branbriere/microcontroland-data"
 url: "https://branbriere.github.io/microcontroland/"
 license: CC-BY-4.0

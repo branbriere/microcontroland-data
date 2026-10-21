@@ -24,6 +24,7 @@ Ce dépôt contient les **données brutes** du pays, sa documentation et les ét
 - **Rien n'est réécrit :** une observation publiée n'est jamais modifiée. Une correction est datée et documentée à part.
 - **Les absences sont explicites :** paquet perdu, redémarrage ou maintenance sont notés comme tels (`null`), jamais remplacés par zéro.
 - **Vérifiable :** chaque fichier peut être contrôlé avec son empreinte SHA-256 du manifeste.
+- **Archivé hors de GitHub :** chaque mois, une copie figée du dépôt est déposée sur Zenodo (CERN), où personne ne peut plus la modifier. DOI de toutes les versions (renvoie toujours à la plus récente) : [10.5281/zenodo.23538358](https://doi.org/10.5281/zenodo.23538358) ; première version le 21 octobre 2026 : 10.5281/zenodo.23538359.
 
 ## Licences et citation
 
@@ -63,6 +64,7 @@ Folder and field names are in French; the data dictionary gives their meaning in
 - **Nothing is rewritten:** a published observation is never modified. A correction is dated and documented separately.
 - **Gaps are explicit:** a lost packet, a restart or a maintenance window is recorded as such (`null`), never replaced by zero.
 - **Verifiable:** every file can be checked against its SHA-256 checksum in the manifest.
+- **Archived outside GitHub:** every month a frozen copy of the repository is deposited on Zenodo (CERN), where nobody can modify it any more. DOI for all versions (always resolves to the latest): [10.5281/zenodo.23538358](https://doi.org/10.5281/zenodo.23538358); first version 21 October 2026: 10.5281/zenodo.23538359.
 
 ## Licences and citation
 
