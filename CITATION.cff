@@ -5,6 +5,7 @@ title: "Microcontrôland — données scientifiques / scientific data"
 authors:
   - family-names: "Brière"
     given-names: "Bran"
+    orcid: "https://orcid.org/0009-0003-0439-8028"
 repository-code: "https://github.com/branbriere/microcontroland-data"
 url: "https://branbriere.github.io/microcontroland/"
 license: CC-BY-4.0
