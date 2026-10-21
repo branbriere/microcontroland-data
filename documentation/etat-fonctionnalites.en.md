@@ -18,10 +18,13 @@ The firmware is not public yet (it will be released with the studies). Until the
 | Country of 120 citizens on 6 regions and a gateway (ESP-NOW radio) | In service | 0.3, 8 Oct 2026 | [architecture.en.md](architecture.en.md) |
 | One hour in the country = one real hour, on French time | In service | 0.3 | `heures[]` in every raw file |
 | Real market prices: European Central Bank rates, read at 6 pm on business days | In service | 0.3 | `bourse` in every issue |
+| What comes in from outside: today, only market prices. Counted votes and replies to the signal: see the ages below | In service (market) | 0.3 | "About" page |
 | Simulated weather: storms, epidemics, droughts, crises, plenty, drawn at random by the gateway | In service | 0.3 | rules page; no real weather data |
 | Elections every 3 days, ministers, censorship, postponement, revolt, palace coup, vacancy | In service | 0.3 | newspaper, `data/histoire.json` |
 | Citizens' faith (believer, agnostic, atheist) | In service | 0.3 | newspaper |
 | Shared language: one idea per hour, speaker drawn at random | In service | 0.3 | `data/langue.json` |
+| Effect of language on politics: two regions that understand each other poorly trust each other less (voters favour a candidate from a region that "speaks like them", and a region that understands the capital poorly gets slightly angrier). This is a fixed rule of the gateway and regions. The words themselves are not inputs to the brains, and their decisions do not depend on them directly | In service | 0.3 | `comprehension` in `data/langue.json` and the raw file; [grille-criteres-v2.en.md](grille-criteres-v2.en.md) (criterion 09) |
+| Reward-based learning of the brains (weights strengthened or weakened according to satisfaction) | In service as a mechanism; its effect on behaviour is not demonstrated yet (weight export in 0.8, then studies) | 0.3 | [grille-criteres-v2.en.md](grille-criteres-v2.en.md) |
 | Daily raw file with SHA-256 manifest | In service | 0.6, 15 Oct 2026 | [dictionnaire-donnees.en.md](dictionnaire-donnees.en.md) |
 | Random seeds published (format 2) | In service | 0.7, 18 Oct 2026 | `graines` block of the raw file |
 | Power consumption read every hour (local smart plug) | In service | 0.7 | `heures[].prise` |

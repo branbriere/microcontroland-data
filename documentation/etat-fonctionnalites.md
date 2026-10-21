@@ -18,10 +18,13 @@ Le firmware n'est pas encore public (il le sera avec les études). D'ici là, la
 | Pays de 120 citoyens sur 6 régions et une passerelle (radio ESP-NOW) | En service | 0.3, 8 oct. 2026 | [architecture.md](architecture.md) |
 | Une heure du pays = une heure réelle, à l'heure française | En service | 0.3 | `heures[]` dans chaque fichier brut |
 | Cours de bourse réels : taux de la Banque centrale européenne, relevés à 18 h les jours ouvrés | En service | 0.3 | `bourse` dans chaque édition |
+| Ce qui entre de l'extérieur : aujourd'hui, seulement les cours de la bourse. Votes comptés et réponses au signal : voir les âges ci-dessous | En service (bourse) | 0.3 | page « Le projet » |
 | Météo simulée : tempêtes, épidémies, sécheresses, crises, abondance, tirées au sort par la passerelle | En service | 0.3 | page des règles ; aucune donnée météo réelle |
 | Élections tous les 3 jours, ministres, censure, report, révolte, coup de palais, vacance | En service | 0.3 | journal, `data/histoire.json` |
 | Foi des citoyens (croyant, agnostique, athée) | En service | 0.3 | journal |
 | Langue commune : une idée par heure, oratrice tirée au sort | En service | 0.3 | `data/langue.json` |
+| Effet de la langue sur la politique : deux régions qui se comprennent mal se font moins confiance (les électeurs favorisent un candidat d'une région qui « parle comme eux », et une région qui comprend mal la capitale se fâche un peu plus). C'est une règle fixe de la passerelle et des régions. Les mots eux-mêmes ne sont pas des entrées des cerveaux, et leurs décisions n'en dépendent pas directement | En service | 0.3 | `comprehension` dans `data/langue.json` et le fichier brut ; [grille-criteres-v2.md](grille-criteres-v2.md) (critère 09) |
+| Apprentissage par récompense des cerveaux (poids renforcés ou affaiblis selon la satisfaction) | En service comme mécanisme ; son effet sur le comportement n'est pas encore démontré (export des poids en 0.8, puis études) | 0.3 | [grille-criteres-v2.md](grille-criteres-v2.md) |
 | Fichier brut quotidien avec manifeste SHA-256 | En service | 0.6, 15 oct. 2026 | [dictionnaire-donnees.md](dictionnaire-donnees.md) |
 | Graines du hasard publiées (format 2) | En service | 0.7, 18 oct. 2026 | bloc `graines` du fichier brut |
 | Consommation électrique relevée chaque heure (prise locale) | En service | 0.7 | `heures[].prise` |
