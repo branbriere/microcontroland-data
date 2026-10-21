@@ -1,1 +1,58 @@
+# Microcontrôland data: static index (plan.html) and sitemap.xml, readable without JavaScript.
+# Plan statique du site des données, régénéré après chaque envoi. Les données ne sont jamais modifiées.
+name: Plan statique du site
 
+on:
+  push:
+    branches: [main]
+    paths:
+      - "donnees/**"
+      - "documentation/**"
+      - "etudes/**"
+      - "protocoles/**"
+      - "site/criteres.json"
+      - "README.md"
+      - "outils/plan_statique.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: plan-statique
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Générer plan.html et sitemap.xml
+        run: python3 outils/plan_statique.py
+
+      - name: Déposer si quelque chose a changé
+        run: |
+          git add plan.html sitemap.xml
+          if git diff --cached --quiet; then
+            echo "Rien de nouveau."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "Plan statique du site (automatique)"
+          # Si la passerelle a publié entre-temps : on se remet à jour et on réessaie.
+          for i in 1 2 3; do
+            git push && echo "ok=1" >> "$GITHUB_ENV" && exit 0
+            sleep $((i * 10))
+            git pull --rebase -q origin main
+          done
+          exit 1
+
+      - name: Relancer la mise en ligne du site
+        if: env.ok == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Relance non nécessaire."
