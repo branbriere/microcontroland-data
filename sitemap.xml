@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://donnees.microcontroland.org/</loc></url>
-  <url><loc>https://donnees.microcontroland.org/plan.html</loc><lastmod>2026-10-21</lastmod></url>
+  <url><loc>https://donnees.microcontroland.org/plan.html</loc><lastmod>2026-10-22</lastmod></url>
   <url><loc>https://donnees.microcontroland.org/README.md</loc></url>
   <url><loc>https://donnees.microcontroland.org/documentation/architecture.en.md</loc></url>
   <url><loc>https://donnees.microcontroland.org/documentation/architecture.md</loc></url>
@@ -29,6 +29,7 @@
   <url><loc>https://donnees.microcontroland.org/site/criteres.json</loc></url>
   <url><loc>https://donnees.microcontroland.org/donnees/ere-001/manifeste.json</loc></url>
   <url><loc>https://donnees.microcontroland.org/donnees/ere-001/reconstitue/manifeste.json</loc></url>
+  <url><loc>https://donnees.microcontroland.org/donnees/ere-001/quotidien/2026-10-22.json</loc><lastmod>2026-10-22</lastmod></url>
   <url><loc>https://donnees.microcontroland.org/donnees/ere-001/quotidien/2026-10-21.json</loc><lastmod>2026-10-21</lastmod></url>
   <url><loc>https://donnees.microcontroland.org/donnees/ere-001/quotidien/2026-10-20.json</loc><lastmod>2026-10-20</lastmod></url>
   <url><loc>https://donnees.microcontroland.org/donnees/ere-001/quotidien/2026-10-19.json</loc><lastmod>2026-10-19</lastmod></url>
