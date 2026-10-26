@@ -2,7 +2,7 @@
 
 *[English version](etat-fonctionnalites.en.md)*
 
-**État au 21 octobre 2026, firmware 0.7 en service.** C'est la référence unique pour savoir si une fonction annoncée sur l'un des deux sites existe. En cas de divergence, ce tableau l'emporte sur les autres pages, et le code l'emporte sur ce tableau. Il est mis à jour à chaque version.
+**État au 26 octobre 2026, firmware 0.8 en service (installé le 25 octobre).** C'est la référence unique pour savoir si une fonction annoncée sur l'un des deux sites existe. En cas de divergence, ce tableau l'emporte sur les autres pages, et le code l'emporte sur ce tableau. Il est mis à jour à chaque version.
 
 **États :**
 - **En service** : la fonction tourne dans la boîte ou sur les sites.
@@ -24,7 +24,7 @@ Le firmware n'est pas encore public (il le sera avec les études). D'ici là, la
 | Foi des citoyens (croyant, agnostique, athée) | En service | 0.3 | journal |
 | Langue commune : une idée par heure, oratrice tirée au sort | En service | 0.3 | `data/langue.json` |
 | Effet de la langue sur la politique : deux régions qui se comprennent mal se font moins confiance (les électeurs favorisent un candidat d'une région qui « parle comme eux », et une région qui comprend mal la capitale se fâche un peu plus). C'est une règle fixe de la passerelle et des régions. Les mots eux-mêmes ne sont pas des entrées des cerveaux, et leurs décisions n'en dépendent pas directement | En service | 0.3 | `comprehension` dans `data/langue.json` et le fichier brut ; [grille-criteres-v2.md](grille-criteres-v2.md) (critère 09) |
-| Apprentissage par récompense des cerveaux (poids renforcés ou affaiblis selon la satisfaction) | En service comme mécanisme ; son effet sur le comportement n'est pas encore démontré (export des poids en 0.8, puis études) | 0.3 | [grille-criteres-v2.md](grille-criteres-v2.md) |
+| Apprentissage par récompense des cerveaux (poids renforcés ou affaiblis selon la satisfaction) | En service comme mécanisme ; son effet sur le comportement n'est pas encore démontré (poids exportés chaque jour depuis la 0.8, études à venir) | 0.3 | [grille-criteres-v2.md](grille-criteres-v2.md) |
 | Fichier brut quotidien avec manifeste SHA-256 | En service | 0.6, 15 oct. 2026 | [dictionnaire-donnees.md](dictionnaire-donnees.md) |
 | Graines du hasard publiées (format 2) | En service | 0.7, 18 oct. 2026 | bloc `graines` du fichier brut |
 | Consommation électrique relevée chaque heure (prise locale) | En service | 0.7 | `heures[].prise` |
@@ -32,8 +32,14 @@ Le firmware n'est pas encore public (il le sera avec les études). D'ici là, la
 | Publication différée en cas de coupure d'Internet | En service | 0.3 | [registre-incidents.md](registre-incidents.md) |
 | Copie du pays hors de la boîte chaque soir | En service | 0.3 | `data/sauvegarde.json` (site du journal) |
 | Bouton RESET caché (Grand Reset) | En service | 0.3 | jamais utilisé à ce jour |
-| Abstention, vote blanc, sondages | Prévu | 0.8 | [historique-versions.md](historique-versions.md) |
-| Export des poids des cerveaux, sauvegarde format 4 | Prévu | 0.8 | [historique-versions.md](historique-versions.md) |
+| Abstention et chronique électorale | En service à partir du 26 oct. 2026 (une nouveauté par soir) | 0.8 | `election` du fichier brut ; brève « Chronique électorale » |
+| Vote blanc | Codé, s'ouvre le 27 oct. 2026 | 0.8 | `nouveautes.voteBlanc` du fichier brut |
+| Sondages (20 citoyens tirés au sort, à mi-campagne) | Codé, s'ouvre le 28 oct. 2026 | 0.8 | `sondage` du fichier brut |
+| Notoriété (un nom connu rassure dans l'isoloir) | Codé, fermé : s'ouvre le lendemain de l'âge de la Mémoire | 0.8 | `notoriete` du fichier brut (calculée dès la 0.8, sans effet avant l'ouverture) |
+| Poids des 120 cerveaux et lexiques complets, une fois par jour | En service | 0.8 | `poids`, `lexiques` du fichier brut |
+| Porte-voix de chaque heure, mesures des régions (mémoire, calcul, temps de réponse, température) | En service | 0.8 | `heures[].porteVoix`, `heures[].regions[].systeme` |
+| Noms des ministres dans le journal | En service | 0.8 | panneau « État du pays » |
+| Sauvegarde du pays au format 4 (champs réservés : généalogie, médecine) | En service | 0.8 | [historique-versions.md](historique-versions.md) |
 | Travail, monnaie, école, générations, etc. (mises à jour 2 à 7) | Prévu | — | page des règles, « Ce qui est prévu » |
 
 ## Les âges de la civilisation
@@ -71,4 +77,5 @@ Le firmware n'est pas encore public (il le sera avec les études). D'ici là, la
 | Relevé anonyme des robots qui se déclarent (jour, robot, page, statut ; ni IP ni cookie) | En service | 21 oct. 2026 | export mensuel prévu dans `agents-ia/` |
 | Tableau des 18 critères de vie artificielle (grille v2) | En service, états « en attente » | 19 oct. 2026 | [grille-criteres-v2.md](grille-criteres-v2.md) |
 | Calcul de l'indice des critères | Prévu : seuils datés avant le premier calcul, affichage à l'âge de la Curiosité | — | idem |
+| Salle de la Relique à l'Ambassade (jeu Microcontrolchess contre l'IA, galerie, problème du jour, version texte relique.txt) | Codée, fermée jusqu'à la Diplomatie | 26 oct. 2026 | [microcontrolchess.md](microcontrolchess.md) |
 | Publication du code du firmware | Prévu, avec les études | — | — |

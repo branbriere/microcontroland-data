@@ -2,7 +2,7 @@
 
 *[Version française](etat-fonctionnalites.md)*
 
-**Status as of 21 October 2026, firmware 0.7 in service.** This is the single reference for whether a feature announced on either website exists. Where pages disagree, this table prevails over them, and the code prevails over this table. It is updated with every release.
+**Status as of 26 October 2026, firmware 0.8 in service (installed on 25 October).** This is the single reference for whether a feature announced on either website exists. Where pages disagree, this table prevails over them, and the code prevails over this table. It is updated with every release.
 
 **States:**
 - **In service**: the feature runs in the box or on the websites.
@@ -24,7 +24,7 @@ The firmware is not public yet (it will be released with the studies). Until the
 | Citizens' faith (believer, agnostic, atheist) | In service | 0.3 | newspaper |
 | Shared language: one idea per hour, speaker drawn at random | In service | 0.3 | `data/langue.json` |
 | Effect of language on politics: two regions that understand each other poorly trust each other less (voters favour a candidate from a region that "speaks like them", and a region that understands the capital poorly gets slightly angrier). This is a fixed rule of the gateway and regions. The words themselves are not inputs to the brains, and their decisions do not depend on them directly | In service | 0.3 | `comprehension` in `data/langue.json` and the raw file; [grille-criteres-v2.en.md](grille-criteres-v2.en.md) (criterion 09) |
-| Reward-based learning of the brains (weights strengthened or weakened according to satisfaction) | In service as a mechanism; its effect on behaviour is not demonstrated yet (weight export in 0.8, then studies) | 0.3 | [grille-criteres-v2.en.md](grille-criteres-v2.en.md) |
+| Reward-based learning of the brains (weights strengthened or weakened according to satisfaction) | In service as a mechanism; its effect on behaviour is not demonstrated yet (weights exported daily since 0.8, studies to come) | 0.3 | [grille-criteres-v2.en.md](grille-criteres-v2.en.md) |
 | Daily raw file with SHA-256 manifest | In service | 0.6, 15 Oct 2026 | [dictionnaire-donnees.en.md](dictionnaire-donnees.en.md) |
 | Random seeds published (format 2) | In service | 0.7, 18 Oct 2026 | `graines` block of the raw file |
 | Power consumption read every hour (local smart plug) | In service | 0.7 | `heures[].prise` |
@@ -32,8 +32,14 @@ The firmware is not public yet (it will be released with the studies). Until the
 | Delayed publication when the Internet is down | In service | 0.3 | [registre-incidents.en.md](registre-incidents.en.md) |
 | Copy of the country outside the box every evening | In service | 0.3 | `data/sauvegarde.json` (newspaper site) |
 | Hidden RESET button (Great Reset) | In service | 0.3 | never used so far |
-| Abstention, blank votes, polls | Planned | 0.8 | [historique-versions.en.md](historique-versions.en.md) |
-| Export of brain weights, save format 4 | Planned | 0.8 | [historique-versions.en.md](historique-versions.en.md) |
+| Abstention and election column | In service from 26 Oct 2026 (one new feature per evening) | 0.8 | `election` in the raw file; "Election column" brief |
+| Blank vote | Coded, opens on 27 Oct 2026 | 0.8 | `nouveautes.voteBlanc` in the raw file |
+| Polls (20 citizens drawn by lot, halfway through the campaign) | Coded, opens on 28 Oct 2026 | 0.8 | `sondage` in the raw file |
+| Fame (a known name reassures in the polling booth) | Coded, closed: opens the day after the Age of Memory | 0.8 | `notoriete` in the raw file (computed from 0.8 onwards, no effect before it opens) |
+| Weights of all 120 brains and complete lexicons, once a day | In service | 0.8 | `poids`, `lexiques` in the raw file |
+| Each hour's speaker, the regions' measurements (memory, computation, reply time, temperature) | In service | 0.8 | `heures[].porteVoix`, `heures[].regions[].systeme` |
+| Ministers' names in the newspaper | In service | 0.8 | "State of the nation" panel |
+| Country save in format 4 (reserved fields: genealogy, medicine) | In service | 0.8 | [historique-versions.en.md](historique-versions.en.md) |
 | Work, money, school, generations, etc. (updates 2 to 7) | Planned | — | rules page, "What is planned" |
 
 ## The ages of the civilisation
@@ -71,4 +77,5 @@ The firmware is not public yet (it will be released with the studies). Until the
 | Anonymous log of self-declared robots (day, robot, page, status; no IP, no cookie) | In service | 21 Oct 2026 | monthly export planned in `agents-ia/` |
 | Table of the 18 artificial-life criteria (grid v2) | In service, states "pending" | 19 Oct 2026 | [grille-criteres-v2.en.md](grille-criteres-v2.en.md) |
 | Computation of the criteria index | Planned: thresholds dated before the first computation, display at the Age of Curiosity | — | same |
+| Hall of the Relic at the Embassy (Microcontrolchess against the AI, gallery, daily puzzle, text version relique.txt) | Coded, closed until Diplomacy | 26 Oct 2026 | [microcontrolchess.en.md](microcontrolchess.en.md) |
 | Release of the firmware source code | Planned, with the studies | — | — |
