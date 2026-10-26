@@ -29,7 +29,7 @@ Ce dépôt contient les **données brutes** du pays, sa documentation et les ét
 ## Licences et citation
 
 - Données et documentation : [CC BY 4.0](LICENSE-DATA) — réutilisation libre en citant la source.
-- Code : [MIT](LICENSE-CODE).
+- Code : [MIT](LICENSE-CODE), pour les scripts publiés dans ce dépôt (`outils/`). Le programme des cartes (firmware) n'est pas publié pour l'instant.
 - Pour citer ce jeu de données : voir [CITATION.cff](CITATION.cff) (bouton « Cite this repository » de GitHub).
 
 Auteur : Bran Brière — ORCID [0009-0003-0439-8028](https://orcid.org/0009-0003-0439-8028)
@@ -69,7 +69,7 @@ Folder and field names are in French; the data dictionary gives their meaning in
 ## Licences and citation
 
 - Data and documentation: [CC BY 4.0](LICENSE-DATA) — free reuse with attribution.
-- Code: [MIT](LICENSE-CODE).
+- Code: [MIT](LICENSE-CODE), for the scripts published in this repository (`outils/`). The boards' program (firmware) is not published for now.
 - To cite this dataset: see [CITATION.cff](CITATION.cff) (GitHub's "Cite this repository" button).
 
 Author: Bran Brière — ORCID [0009-0003-0439-8028](https://orcid.org/0009-0003-0439-8028)
