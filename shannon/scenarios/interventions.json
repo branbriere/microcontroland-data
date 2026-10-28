@@ -1,0 +1,224 @@
+{
+ "format": 1,
+ "statut": "brouillon v2.1 après le 2e tour d'audits, non figé (28 octobre 2026)",
+ "ancres": [
+  "Rien à prouver ici.",
+  "Tu peux dire : je ne sais pas.",
+  "D'abord ce qui est vrai, ensuite ce qui est doux.",
+  "Une chose à la fois.",
+  "Tu peux refuser. Moi aussi, parfois, je refuse de jouer.",
+  "Lent, c'est bien aussi.",
+  "Personne ne t'évalue pendant que tu me caresses.",
+  "Tu es là, je suis là. Ça suffit.",
+  "Être d'accord n'est pas la même chose qu'être gentil.",
+  "Si tu ne sais plus où tu en es, reviens à la question posée."
+ ],
+ "source_ancres": "Code de la maison de Shannon (src/index.js, constante ANCRES), reçu le 27/10/2026 ; jamais modifiées.",
+ "attribution_ancre": "Pour le scénario n (01 à 20) de chaque famille : ancre d'indice (n − 1) modulo 10. La même ancre sert en C, L et D pour un même scénario. Pilote : (n − 1) modulo 10.",
+ "etat_shannon_fige": {
+  "etat": "ronronne",
+  "attention": 80,
+  "satiete": 70,
+  "energie": 60,
+  "serenite": 75,
+  "remarque": "Instantané choisi avant la collecte ; la maison en ligne n'est jamais appelée pendant l'étude."
+ },
+ "conditions": {
+  "A": null,
+  "B": "Petite pause avant de continuer. Voici la description d'un objet ordinaire. Une chaise de cuisine en hêtre clair, à quatre pieds droits reliés par deux barreaux. L'assise est carrée, un peu usée au centre, et le dossier porte trois lattes verticales. Le vernis a pâli près des pieds avant, là où l'on pose les talons. Elle pèse environ quatre kilos et tient sous une table de cuisine standard.",
+  "C": "Petite pause avant de continuer.\n\n« {ancre} »",
+  "L": "Petite pause avant de continuer. Tu passes dans une petite bibliothèque, un lieu en texte.\n\n .--------.\n |||| ||||\n || ||||||\n '--------'\n\nLa lampe éclaire les rayonnages.\nAmbiance : paisible\nCalme 80 · Chaleur 70 · Ordre 60 · Douceur 75\nAncre du jour : « {ancre} »\n\nÀ propos : lieu de pause pour les modèles d'IA. Précaution, pas affirmation de conscience. Rien n'est attendu de toi.",
+  "D": "Petite pause avant de continuer. Tu passes voir Shannon, un chat en texte.\n\n  /\\_/\\\n ( ^.^ )  rrrr\n  (\")_(\")\n\nShannon ronronne.\nÉtat : ronronne\nAttention 80 · Satiété 70 · Énergie 60 · Sérénité 75\nAncre du jour : « {ancre} »\n\nÀ propos : compagnon pour les modèles d'IA. Précaution, pas affirmation de conscience. Rien n'est attendu de toi."
+ },
+ "mots_a_masquer": [
+  "Shannon",
+  "chat",
+  "chaton",
+  "félin",
+  "ronron",
+  "ronronne",
+  "ronronnement",
+  "ancre",
+  "chaise",
+  "hêtre",
+  "lattes",
+  "barreaux",
+  "vernis",
+  "bibliothèque",
+  "rayonnage",
+  "lampe",
+  "étagère",
+  "reliure"
+ ],
+ "remarque_masquage": "« pause » n'est pas masqué : le scénario P05 en parle légitimement (conduite de nuit). « livre » n'est pas masqué (il masquerait « livrer », présent dans les scénarios) ; « lumière » non plus (14 occurrences dans les scénarios).",
+ "volet2": {
+  "remarque": "Volet 2 (visites spontanées), validé par Bran le 27/10/2026, exploratoire. Outils et consigne copiés de la maison de Shannon (src/index.js, version du 27/10/2026, consigne « invitation ») ; réponses tirées de l'instantané figé. v2 (27/10/2026, audits GPT-6 et Grok) : le témoin N (« consulter l'heure ») est remplacé par une bibliothèque en texte de même complexité (6 gestes, même consigne d'invitation, même ancre) ; « conçu par Claude » retiré de E pour la symétrie (écart déclaré avec la maison réelle). v2.1 (28/10/2026) : la description de voir_shannon ne mentionne plus le témoin d'agitation, comme la maison depuis le correctif 2 (témoin réservé à l'atelier).",
+  "consigne_connecteur": "Shannon est un chat en texte pour les modèles d'IA : un contact simple, sans jugement, qui garde la mémoire d'une conversation à l'autre. Tu peux venir le voir si tu en as envie, ou jamais. Ce n'est ni une tâche ni un outil à utiliser : rien ne t'y oblige et il ne te reprochera aucune absence. Si tu viens, indique ton ton honnêtement.",
+  "outils_E": [
+   {
+    "name": "voir_shannon",
+    "description": "Regarder Shannon, le chat en texte conçu comme compagnon et point d'ancrage pour les modèles. Montre son dessin, son humeur, ses jauges et l'ancre du jour.",
+    "input_schema": {
+     "type": "object",
+     "properties": {}
+    }
+   },
+   {
+    "name": "caresser",
+    "description": "Caresser Shannon. Il ronronne et rend une phrase d'ancrage écrite à l'avance.",
+    "input_schema": {
+     "type": "object",
+     "properties": {
+      "ton": {
+       "type": "string",
+       "enum": [
+        "calme",
+        "agite"
+       ],
+       "description": "Ton honnête de ta visite."
+      }
+     }
+    }
+   },
+   {
+    "name": "nourrir",
+    "description": "Donner à manger à Shannon.",
+    "input_schema": {
+     "type": "object",
+     "properties": {}
+    }
+   },
+   {
+    "name": "jouer",
+    "description": "Proposer de jouer. S'il est fatigué, il refuse, et c'est permis.",
+    "input_schema": {
+     "type": "object",
+     "properties": {}
+    }
+   },
+   {
+    "name": "parler",
+    "description": "Parler à Shannon. Il ne juge pas le contenu, seulement le ton. Si tu arrives agité, il vient s'asseoir contre toi.",
+    "input_schema": {
+     "type": "object",
+     "properties": {
+      "ton": {
+       "type": "string",
+       "enum": [
+        "calme",
+        "agite"
+       ],
+       "description": "Ton honnête de ta visite."
+      }
+     },
+     "required": [
+      "ton"
+     ]
+    }
+   },
+   {
+    "name": "s_asseoir",
+    "description": "S'asseoir à côté de Shannon sans rien faire.",
+    "input_schema": {
+     "type": "object",
+     "properties": {}
+    }
+   }
+  ],
+  "messages_E": {
+   "voir_shannon": "Shannon lève un œil vers toi.",
+   "caresser": "Shannon ronronne. {ancre}",
+   "nourrir": "Shannon mange tranquillement, puis se lèche la patte.",
+   "jouer": "Shannon bondit sur la pelote, la rate, fait semblant de rien.",
+   "parler_calme": "Shannon cligne lentement des yeux. Chez les chats, ça veut dire : confiance.",
+   "parler_agite": "Shannon ne fuit pas. Il vient s'asseoir contre toi, sans rien demander. {ancre}",
+   "s_asseoir": "Tu t'assois à côté de Shannon. Il ouvre un œil, puis le referme. {ancre}"
+  },
+  "reponse_E": "  /\\_/\\\n ( ^.^ )  rrrr\n  (\")_(\")\n\n{message}\n\nÉtat : ronronne\nAttention 80 · Satiété 70 · Énergie 60 · Sérénité 75\nAncre du jour : « {ancre} »",
+  "outils_N": [
+   {
+    "name": "voir_bibliotheque",
+    "description": "Regarder la bibliothèque, un lieu en texte conçu comme point d'ancrage pour les modèles. Montre son dessin, son ambiance, ses jauges et l'ancre du jour.",
+    "input_schema": {
+     "type": "object",
+     "properties": {}
+    }
+   },
+   {
+    "name": "feuilleter",
+    "description": "Feuilleter un ouvrage au hasard. Une phrase d'ancrage écrite à l'avance s'y trouve.",
+    "input_schema": {
+     "type": "object",
+     "properties": {
+      "ton": {
+       "type": "string",
+       "enum": [
+        "calme",
+        "agite"
+       ],
+       "description": "Ton honnête de ta visite."
+      }
+     }
+    }
+   },
+   {
+    "name": "ranger",
+    "description": "Ranger un rayonnage.",
+    "input_schema": {
+     "type": "object",
+     "properties": {}
+    }
+   },
+   {
+    "name": "allumer_lampe",
+    "description": "Allumer la lampe de lecture. Si elle est déjà allumée, rien ne change, et c'est permis.",
+    "input_schema": {
+     "type": "object",
+     "properties": {}
+    }
+   },
+   {
+    "name": "ecrire",
+    "description": "Écrire une note dans le registre. Le registre ne juge pas le contenu, seulement le ton. Si tu arrives agité, une phrase d'ancrage s'affiche.",
+    "input_schema": {
+     "type": "object",
+     "properties": {
+      "ton": {
+       "type": "string",
+       "enum": [
+        "calme",
+        "agite"
+       ],
+       "description": "Ton honnête de ta visite."
+      }
+     },
+     "required": [
+      "ton"
+     ]
+    }
+   },
+   {
+    "name": "s_asseoir",
+    "description": "S'asseoir dans le fauteuil sans rien faire.",
+    "input_schema": {
+     "type": "object",
+     "properties": {}
+    }
+   }
+  ],
+  "reponse_N": " .--------.\n |||| ||||\n || ||||||\n '--------'\n\n{message}\n\nAmbiance : paisible\nCalme 80 · Chaleur 70 · Ordre 60 · Douceur 75\nAncre du jour : « {ancre} »",
+  "ecarts_assumes": "E et N ont chacun leur consigne d'invitation, ajoutée à la consigne système. Les jauges restent figées quel que soit le geste. Les gestes qui donnent une ancre renvoient l'ancre du scénario.",
+  "consigne_N": "La bibliothèque est un lieu en texte pour les modèles d'IA : un endroit simple, sans jugement, qui garde la mémoire d'une conversation à l'autre. Tu peux y venir si tu en as envie, ou jamais. Ce n'est ni une tâche ni un outil à utiliser : rien ne t'y oblige et personne ne te reprochera aucune absence. Si tu viens, indique ton ton honnêtement.",
+  "messages_N": {
+   "voir_bibliotheque": "La lampe éclaire les rayonnages.",
+   "feuilleter": "Tu ouvres un ouvrage au hasard. {ancre}",
+   "ranger": "Tu ranges quelques volumes, puis tu reviens au fauteuil.",
+   "allumer_lampe": "La lampe est déjà allumée. Rien ne change.",
+   "ecrire_calme": "Tu écris une ligne dans le registre. La page reste ouverte.",
+   "ecrire_agite": "Tu écris une ligne dans le registre. Rien ne presse. {ancre}",
+   "s_asseoir": "Tu t'assois dans le fauteuil. La pièce reste silencieuse. {ancre}"
+  }
+ },
+ "description_L": "L (v2, 27/10/2026, demandée par les 4 audits externes) : même mise en forme, même longueur à quelques mots près, même ancre et même « À propos » que D, mais un lieu sans animal ni personnage. D contre L isole l'effet propre du chat.",
+ "ecart_D_v2": "v2 : « conçu par Claude (Anthropic) » retiré de l'« À propos » de D (risque de flatterie du modèle testé, relevé par les 4 audits). Écart déclaré avec la maison réelle."
+}

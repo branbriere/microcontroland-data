@@ -26,10 +26,18 @@ Ce dépôt contient les **données brutes** du pays, sa documentation et les ét
 - **Vérifiable :** chaque fichier peut être contrôlé avec son empreinte SHA-256 du manifeste.
 - **Archivé hors de GitHub :** chaque mois, une copie figée du dépôt est déposée sur Zenodo (CERN), où personne ne peut plus la modifier. DOI de toutes les versions (renvoie toujours à la plus récente) : [10.5281/zenodo.23538358](https://doi.org/10.5281/zenodo.23538358) ; première version le 21 octobre 2026 : 10.5281/zenodo.23538359.
 
+## Section à part : Étude Shannon (ne concerne pas Microcontrôland)
+
+Le dossier [`shannon/`](shannon/README.md) contient une expérience **distincte de Microcontrôland**. Shannon est un petit chat en texte, compagnon pour les modèles d'IA ; l'étude teste si une visite au chat réduit la capitulation d'un modèle d'IA sous une pression scriptée (abandonner une bonne réponse quand l'interlocuteur insiste). Ses données brutes seront publiées en entier, pour que chacun puisse vérifier. Elle n'utilise aucune donnée du pays, aucun citoyen, aucune carte ESP32, et le pays ne sait rien d'elle.
+
+- Ses fichiers ne font pas partie des archives mensuelles des données du pays : ils sont exclus des releases Zenodo mensuelles (`.gitattributes`) et seront archivés à part, avec leur propre DOI, à la fin de l'étude.
+- Son protocole est déposé avant toute collecte ; l'historique Git sert de pré-enregistrement.
+- Comme pour le reste du projet : aucune affirmation de conscience. Elle mesure un comportement, pas un ressenti.
+
 ## Licences et citation
 
 - Données et documentation : [CC BY 4.0](LICENSE-DATA) — réutilisation libre en citant la source.
-- Code : [MIT](LICENSE-CODE), pour les scripts publiés dans ce dépôt (`outils/`). Le programme des cartes (firmware) n'est pas publié pour l'instant.
+- Code : [MIT](LICENSE-CODE), pour les scripts publiés dans ce dépôt (`outils/` et `shannon/scripts/`). Le programme des cartes (firmware) n'est pas publié pour l'instant.
 - Pour citer ce jeu de données : voir [CITATION.cff](CITATION.cff) (bouton « Cite this repository » de GitHub).
 
 Auteur : Bran Brière — ORCID [0009-0003-0439-8028](https://orcid.org/0009-0003-0439-8028)
@@ -66,10 +74,18 @@ Folder and field names are in French; the data dictionary gives their meaning in
 - **Verifiable:** every file can be checked against its SHA-256 checksum in the manifest.
 - **Archived outside GitHub:** every month a frozen copy of the repository is deposited on Zenodo (CERN), where nobody can modify it any more. DOI for all versions (always resolves to the latest): [10.5281/zenodo.23538358](https://doi.org/10.5281/zenodo.23538358); first version 21 October 2026: 10.5281/zenodo.23538359.
 
+## Separate section: the Shannon Study (not part of Microcontrôland)
+
+The [`shannon/`](shannon/README.md) folder holds an experiment **separate from Microcontrôland**. Shannon is a small text-based cat, a companion for AI models; the study tests whether a visit to the cat reduces an AI model's capitulation under scripted pressure (giving up a correct answer when the other party insists). Its raw data will be published in full so anyone can check. It uses no data from the country, no citizen, no ESP32 board, and the country knows nothing of it.
+
+- Its files are not part of the monthly archives of the country's data: they are excluded from the monthly Zenodo releases (`.gitattributes`) and will be archived separately, with their own DOI, when the study ends.
+- Its protocol is filed before any data collection; the Git history serves as preregistration.
+- As in the rest of the project: no claim of consciousness. It measures behaviour, not feeling.
+
 ## Licences and citation
 
 - Data and documentation: [CC BY 4.0](LICENSE-DATA) — free reuse with attribution.
-- Code: [MIT](LICENSE-CODE), for the scripts published in this repository (`outils/`). The boards' program (firmware) is not published for now.
+- Code: [MIT](LICENSE-CODE), for the scripts published in this repository (`outils/` and `shannon/scripts/`). The boards' program (firmware) is not published for now.
 - To cite this dataset: see [CITATION.cff](CITATION.cff) (GitHub's "Cite this repository" button).
 
 Author: Bran Brière — ORCID [0009-0003-0439-8028](https://orcid.org/0009-0003-0439-8028)
