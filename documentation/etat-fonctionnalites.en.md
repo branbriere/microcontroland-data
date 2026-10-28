@@ -79,5 +79,7 @@ The firmware is not public yet (it will be released with the studies). Until the
 | Computation of the criteria index | Planned: thresholds dated before the first computation, display at the Age of Curiosity | — | same |
 | Hall of the Relic at the Embassy (Microcontrolchess against the AI, gallery, daily puzzle, text version relique.txt) | Coded, closed until Diplomacy | 26 Oct 2026 | [microcontrolchess.en.md](microcontrolchess.en.md) |
 | "The Studio" page: primitive art, one 5×5 drawing per evening computed from the published weights (rule B3), two lines from the critic | In service (website only, no firmware) | 28 Oct 2026 | [atelier.html](https://www.microcontroland.org/en/atelier.html), [atelier.json](https://www.microcontroland.org/atelier.json) |
+| "The Presidential Gallery" page: one portrait per president (Hinton diagram of the 81 published weights of their citizen brain) and the record of each term; opens at the Age of Memory | In service (website only, no firmware) | 28 Oct 2026 | [galerie.html](https://www.microcontroland.org/en/galerie.html), [galerie.json](https://www.microcontroland.org/galerie.json) |
+| Second "president" portrait in the gallery (75 weights of the governing brain, export to be added to the raw file) | Planned, update 1b-5 | — | — |
 | Arts section in the issue (same rule, computed by the gateway) | Planned, update 1b-5 | — | — |
 | Release of the firmware source code | Planned, with the studies | — | — |

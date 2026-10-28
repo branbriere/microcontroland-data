@@ -79,5 +79,7 @@ Le firmware n'est pas encore public (il le sera avec les études). D'ici là, la
 | Calcul de l'indice des critères | Prévu : seuils datés avant le premier calcul, affichage à l'âge de la Curiosité | — | idem |
 | Salle de la Relique à l'Ambassade (jeu Microcontrolchess contre l'IA, galerie, problème du jour, version texte relique.txt) | Codée, fermée jusqu'à la Diplomatie | 26 oct. 2026 | [microcontrolchess.md](microcontrolchess.md) |
 | Page « L'atelier » : art primitif, un dessin 5×5 par soir calculé à partir des poids publiés (règle B3), deux lignes du critique | En service (site seulement, aucun firmware) | 28 oct. 2026 | [atelier.html](https://www.microcontroland.org/atelier.html), [atelier.json](https://www.microcontroland.org/atelier.json) |
+| Page « Galerie des présidents » : un portrait par président (diagramme de Hinton des 81 poids publiés de son cerveau de citoyen) et le relevé de chaque mandat ; ouverte à l'âge de la Mémoire | En service (site seulement, aucun firmware) | 28 oct. 2026 | [galerie.html](https://www.microcontroland.org/galerie.html), [galerie.json](https://www.microcontroland.org/galerie.json) |
+| Second portrait « le président » dans la galerie (75 poids du cerveau qui gouverne, export à ajouter au fichier brut) | Prévu, MAJ 1b-5 | — | — |
 | Rubrique Arts dans l'édition (même règle, calculée par la passerelle) | Prévu, MAJ 1b-5 | — | — |
 | Publication du code du firmware | Prévu, avec les études | — | — |
