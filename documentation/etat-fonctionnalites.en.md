@@ -2,7 +2,7 @@
 
 *[Version française](etat-fonctionnalites.md)*
 
-**Status as of 26 October 2026, firmware 0.8 in service (installed on 25 October).** This is the single reference for whether a feature announced on either website exists. Where pages disagree, this table prevails over them, and the code prevails over this table. It is updated with every release.
+**Status as of 28 October 2026, firmware 0.8 in service (installed on 25 October).** This is the single reference for whether a feature announced on either website exists. Where pages disagree, this table prevails over them, and the code prevails over this table. It is updated with every release.
 
 **States:**
 - **In service**: the feature runs in the box or on the websites.
@@ -78,4 +78,6 @@ The firmware is not public yet (it will be released with the studies). Until the
 | Table of the 18 artificial-life criteria (grid v2) | In service, states "pending" | 19 Oct 2026 | [grille-criteres-v2.en.md](grille-criteres-v2.en.md) |
 | Computation of the criteria index | Planned: thresholds dated before the first computation, display at the Age of Curiosity | — | same |
 | Hall of the Relic at the Embassy (Microcontrolchess against the AI, gallery, daily puzzle, text version relique.txt) | Coded, closed until Diplomacy | 26 Oct 2026 | [microcontrolchess.en.md](microcontrolchess.en.md) |
+| "The Studio" page: primitive art, one 5×5 drawing per evening computed from the published weights (rule B3), two lines from the critic | In service (website only, no firmware) | 28 Oct 2026 | [atelier.html](https://www.microcontroland.org/en/atelier.html), [atelier.json](https://www.microcontroland.org/atelier.json) |
+| Arts section in the issue (same rule, computed by the gateway) | Planned, update 1b-5 | — | — |
 | Release of the firmware source code | Planned, with the studies | — | — |

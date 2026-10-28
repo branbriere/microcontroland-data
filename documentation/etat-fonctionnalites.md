@@ -2,7 +2,7 @@
 
 *[English version](etat-fonctionnalites.en.md)*
 
-**État au 26 octobre 2026, firmware 0.8 en service (installé le 25 octobre).** C'est la référence unique pour savoir si une fonction annoncée sur l'un des deux sites existe. En cas de divergence, ce tableau l'emporte sur les autres pages, et le code l'emporte sur ce tableau. Il est mis à jour à chaque version.
+**État au 28 octobre 2026, firmware 0.8 en service (installé le 25 octobre).** C'est la référence unique pour savoir si une fonction annoncée sur l'un des deux sites existe. En cas de divergence, ce tableau l'emporte sur les autres pages, et le code l'emporte sur ce tableau. Il est mis à jour à chaque version.
 
 **États :**
 - **En service** : la fonction tourne dans la boîte ou sur les sites.
@@ -78,4 +78,6 @@ Le firmware n'est pas encore public (il le sera avec les études). D'ici là, la
 | Tableau des 18 critères de vie artificielle (grille v2) | En service, états « en attente » | 19 oct. 2026 | [grille-criteres-v2.md](grille-criteres-v2.md) |
 | Calcul de l'indice des critères | Prévu : seuils datés avant le premier calcul, affichage à l'âge de la Curiosité | — | idem |
 | Salle de la Relique à l'Ambassade (jeu Microcontrolchess contre l'IA, galerie, problème du jour, version texte relique.txt) | Codée, fermée jusqu'à la Diplomatie | 26 oct. 2026 | [microcontrolchess.md](microcontrolchess.md) |
+| Page « L'atelier » : art primitif, un dessin 5×5 par soir calculé à partir des poids publiés (règle B3), deux lignes du critique | En service (site seulement, aucun firmware) | 28 oct. 2026 | [atelier.html](https://www.microcontroland.org/atelier.html), [atelier.json](https://www.microcontroland.org/atelier.json) |
+| Rubrique Arts dans l'édition (même règle, calculée par la passerelle) | Prévu, MAJ 1b-5 | — | — |
 | Publication du code du firmware | Prévu, avec les études | — | — |
