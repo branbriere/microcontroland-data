@@ -35,7 +35,7 @@
       integriteKo: (n, t, l) => `SHA-256 : ${n}/${t} non conforme${n > 1 ? 's' : ''} (${l})`,
       verification: 'vérification…', dernierFichier: ' (dernier fichier ; « tout vérifier » pour les autres)',
       reponses: (m, t, h) => `${t - m}/${t} région-heures reçues` + (h ? `, ${h} heure${h > 1 ? 's' : ''} manquante${h > 1 ? 's' : ''}` : ''),
-      pied: 'Données et documentation sous CC BY 4.0, code sous MIT. Bran Brière, chercheur indépendant. Aucun cookie. Seul service extérieur : la mesure d\'audience anonyme GoatCounter (aucune adresse IP enregistrée, totaux seulement, hébergée dans l\'Union européenne ; rien n\'est compté si votre navigateur demande « Ne pas suivre »).',
+      pied: 'Données et documentation sous CC BY 4.0, code sous MIT. Bran Brière. Aucun cookie. Seul service extérieur : la mesure d\'audience anonyme GoatCounter (aucune adresse IP enregistrée, totaux seulement, hébergée dans l\'Union européenne ; rien n\'est compté si votre navigateur demande « Ne pas suivre »).',
       chargement: 'chargement…', indisponible: 'fichier indisponible',
       aucun: 'Aucun résultat.',
       types: { doc: 'documentation', etude: 'étude', critere: 'critère', jour: 'données', protocole: 'protocole' }
@@ -71,7 +71,7 @@
       integriteKo: (n, t, l) => `SHA-256: ${n}/${t} do not match (${l})`,
       verification: 'checking…', dernierFichier: ' (latest file; "check all" for the rest)',
       reponses: (m, t, h) => `${t - m}/${t} region-hours received` + (h ? `, ${h} missing hour${h > 1 ? 's' : ''}` : ''),
-      pied: 'Data and documentation under CC BY 4.0, code under MIT. Bran Brière, independent researcher. No cookies. Only external service: anonymous GoatCounter audience measurement (no IP address stored, totals only, hosted in the European Union; nothing is counted if your browser sends "Do Not Track").',
+      pied: 'Data and documentation under CC BY 4.0, code under MIT. Bran Brière. No cookies. Only external service: anonymous GoatCounter audience measurement (no IP address stored, totals only, hosted in the European Union; nothing is counted if your browser sends "Do Not Track").',
       chargement: 'loading…', indisponible: 'file unavailable',
       aucun: 'No results.',
       types: { doc: 'documentation', etude: 'study', critere: 'criterion', jour: 'data', protocole: 'protocol' }

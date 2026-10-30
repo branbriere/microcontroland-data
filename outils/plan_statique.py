@@ -49,7 +49,7 @@ T = {
         "correctionsNote": "Technical incidents and corrections are dated and documented separately; published files are never modified. Data gaps remain visible in every raw file (null values, missing hours).",
         "registreLien": "Read the incidents and corrections log",
         "autres": "Other files", "github": "GitHub",
-        "pied": "Data and documentation under CC BY 4.0, code under MIT. Bran Brière, independent researcher.",
+        "pied": "Data and documentation under CC BY 4.0, code under MIT. Bran Brière.",
     },
     "fr": {
         "titre": "Données ouvertes de Microcontrôland : plan statique",
@@ -73,7 +73,7 @@ T = {
         "correctionsNote": "Les incidents techniques et les corrections sont datés et documentés à part ; les fichiers publiés ne sont jamais modifiés. Les absences de données restent visibles dans chaque fichier brut (valeurs null, heures manquantes).",
         "registreLien": "Lire le registre des incidents et des corrections",
         "autres": "Autres fichiers", "github": "GitHub",
-        "pied": "Données et documentation sous CC BY 4.0, code sous MIT. Bran Brière, chercheur indépendant.",
+        "pied": "Données et documentation sous CC BY 4.0, code sous MIT. Bran Brière.",
     },
 }
 MANIFESTES = ["donnees/ere-001/manifeste.json", "donnees/ere-001/reconstitue/manifeste.json"]
