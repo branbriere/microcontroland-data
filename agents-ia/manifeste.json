@@ -1,0 +1,17 @@
+{
+ "format": 1,
+ "description": "Exports mensuels du relevé des agents IA (Worker Cloudflare, base D1), déposés tels quels. / Monthly exports of the AI-agent log (Cloudflare Worker, D1 database), filed as served.",
+ "fichiers": [
+  {
+   "fichier": "agents-ia/2026-10.json",
+   "mois": "2026-10",
+   "format_export": 3,
+   "lignes": 1250,
+   "visites": 1457,
+   "octets": 280617,
+   "sha256": "8a7e5af53b3a7a8c9980ef8986f2380a40470709a1d29207ad410edd2be7644b",
+   "depose": "2026-11-03",
+   "debut_releve": "2026-10-21T09:50+02:00"
+  }
+ ]
+}
