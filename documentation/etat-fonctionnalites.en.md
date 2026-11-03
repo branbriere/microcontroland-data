@@ -2,7 +2,7 @@
 
 *[Version française](etat-fonctionnalites.md)*
 
-**Status as of 28 October 2026, firmware 0.8 in service (installed on 25 October).** This is the single reference for whether a feature announced on either website exists. Where pages disagree, this table prevails over them, and the code prevails over this table. It is updated with every release.
+**Status as of 2 November 2026, firmware 0.9 (gateway) and 0.8.1 (regions) in service (installed on 1 November).** This is the single reference for whether a feature announced on either website exists. Where pages disagree, this table prevails over them, and the code prevails over this table. It is updated with every release.
 
 **States:**
 - **In service**: the feature runs in the box or on the websites.
@@ -32,14 +32,16 @@ The firmware is not public yet (it will be released with the studies). Until the
 | Delayed publication when the Internet is down | In service | 0.3 | [registre-incidents.en.md](registre-incidents.en.md) |
 | Copy of the country outside the box every evening | In service | 0.3 | `data/sauvegarde.json` (newspaper site) |
 | Hidden RESET button (Great Reset) | In service | 0.3 | never used so far |
-| Abstention and election column | In service from 26 Oct 2026 (one new feature per evening) | 0.8 | `election` in the raw file; "Election column" brief |
-| Blank vote | Coded, opens on 27 Oct 2026 | 0.8 | `nouveautes.voteBlanc` in the raw file |
-| Polls (20 citizens drawn by lot, halfway through the campaign) | Coded, opens on 28 Oct 2026 | 0.8 | `sondage` in the raw file |
-| Fame (a known name reassures in the polling booth) | Coded, closed: opens the day after the Age of Memory | 0.8 | `notoriete` in the raw file (computed from 0.8 onwards, no effect before it opens) |
+| Abstention and election column | In service since 26 Oct 2026 | 0.8 | `election` in the raw file; "Election column" brief |
+| Blank vote | In service since 27 Oct 2026 | 0.8 | `nouveautes.voteBlanc` in the raw file |
+| Polls (20 citizens drawn by lot, halfway through the campaign) | In service since 29 Oct 2026 | 0.8 | `sondage` in the raw file |
+| Fame (a known name reassures in the polling booth) | In service since 30 Oct 2026 | 0.8 | `notoriete` in the raw file (computed from 0.8 onwards, no effect before it opens) |
 | Weights of all 120 brains and complete lexicons, once a day | In service | 0.8 | `poids`, `lexiques` in the raw file |
 | Each hour's speaker, the regions' measurements (memory, computation, reply time, temperature) | In service | 0.8 | `heures[].porteVoix`, `heures[].regions[].systeme` |
 | Ministers' names in the newspaper | In service | 0.8 | "State of the nation" panel |
 | Country save in format 4 (reserved fields: genealogy, medicine) | In service | 0.8 | [historique-versions.en.md](historique-versions.en.md) |
+| Stronger radio: each region sends its state 4 times, the gateway keeps its radio awake (about 13% of region-hours missing from 25 Oct to 1 Nov) | In service | 0.8.1 (regions), 0.9 (gateway), 1 Nov 2026 | `heures[].regions` in the raw file (`null` = silent region) |
+| Raw file format 4: biographies, 0.9 new features, event `w` (shared word regained) | In service | 0.9, 2 Nov 2026 | [dictionnaire-donnees.en.md](dictionnaire-donnees.en.md) |
 | Work, money, school, generations, etc. (updates 2 to 7) | Planned | — | rules page, "What is planned" |
 
 ## The ages of the civilisation
@@ -48,8 +50,8 @@ The firmware is not public yet (it will be released with the studies). Until the
 | --- | --- | --- | --- |
 | Founding | The paper | In service since 9 Oct 2026 | newspaper |
 | Speech | The "Language" page | In service since 18 Oct 2026 | `ages` in `data/latest.json` |
-| Memory | The "History" page, records | Coded, closed | same field: progress towards the age |
-| Civil Registry | Adopting a citizen | Coded, closed | same |
+| Memory | The "History" page, records | In service since 24 Oct 2026 | same field: progress towards the age |
+| Civil Registry | Adopting a citizen | In service since 28 Oct 2026 | same |
 | Diplomacy | The embassy, its questions and monthly letter | Coded, closed | same |
 | Diplomacy | Embassy denials in the paper (typos of past issues) | Coded (0.5), closed | same |
 | Diplomacy | Public votes on the embassy's questions (plain counters) | Coded, closed, and waiting for the voting service (not chosen yet) | legal notice page |
@@ -63,7 +65,9 @@ The firmware is not public yet (it will be released with the studies). Until the
 | Following characters ("What became of…?", journey of the week) | In service | 0.5 and 0.6 | issues |
 | Sections, signing citizen journalists, daily note, Sunday issue | In service | 0.6 | `signature` in issues |
 | Censored press (articles blacked out, never the figures) | In service | 0.6 | issues under censorship |
-| Biography of every citizen, fame | Planned | — | rules page |
+| Biography of every citizen (at most 16 steps: the fact, the hour and the mood of the moment, never the reason), quoted by the Sunday portrait and the "My citizen" page | Coded, opens on 3 Nov 2026 (one new feature per evening) | 0.9 | `biographies` in the raw file |
+| Binaï, the rebels' newspaper, at the top of the issue from the 3rd consecutive issue under censorship | Opened on 2 Nov 2026; appears only under prolonged censorship | 0.9 | `nouveautes.binai` in the raw file |
+| Return of a lost shared word (line in the day's chronology; a brief in at most one issue in seven) | In service | 0.9 | event `w` in the raw file |
 
 ## The websites
 
@@ -81,6 +85,7 @@ The firmware is not public yet (it will be released with the studies). Until the
 | National Tourist Office (regions, religion, places to visit, one-byte collector coin with the president's portrait, PDF leaflet FR/EN, text version tourisme.txt); virtual visa at the Embassy | Coded, closed until Diplomacy | 28 Oct 2026 | [tourisme.txt](https://www.microcontroland.org/en/tourisme.txt) |
 | "The Studio" page: primitive art, one 5×5 drawing per evening computed from the published weights (rule B3), two lines from the critic | In service (website only, no firmware) | 28 Oct 2026 | [atelier.html](https://www.microcontroland.org/en/atelier.html), [atelier.json](https://www.microcontroland.org/atelier.json) |
 | "The Presidential Gallery" page: one portrait per president (Hinton diagram of the 81 published weights of their citizen brain) and the record of each term; opens at the Age of Memory | In service (website only, no firmware) | 28 Oct 2026 | [galerie.html](https://www.microcontroland.org/en/galerie.html), [galerie.json](https://www.microcontroland.org/galerie.json) |
+| "My citizen" page: each citizen's history, rebuilt every evening from the published raw files (political events since 9 Oct, candidacies, revolt and censorship since 15 Oct), up to the start of their biography | In service (website only, no firmware) | 2 Nov 2026 | [historique.json](https://www.microcontroland.org/data/historique.json) |
 | Second "president" portrait in the gallery (75 weights of the governing brain, export to be added to the raw file) | Planned, update 1b-5 | — | — |
 | Arts section in the issue (same rule, computed by the gateway) | Planned, update 1b-5 | — | — |
 | Release of the firmware source code | Planned, with the studies | — | — |

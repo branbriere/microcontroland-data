@@ -1,6 +1,6 @@
 # Dictionnaire des données
 
-*[English version](dictionnaire-donnees.en.md)* · Format des fichiers quotidiens : **3** (firmware 0.8, à partir du 26 octobre 2026) ; format **2** (firmware 0.7) du 19 au 25 octobre 2026 ; format **1** (firmware 0.6) du 15 au 18 octobre 2026
+*[English version](dictionnaire-donnees.en.md)* · Format des fichiers quotidiens : **4** (firmware 0.9, à partir du 2 novembre 2026, sous réserve de l'installation du 1er novembre) ; format **3** (firmware 0.8) du 26 octobre au 1er novembre 2026 ; format **2** (firmware 0.7) du 19 au 25 octobre 2026 ; format **1** (firmware 0.6) du 15 au 18 octobre 2026
 
 ## Règles générales
 
@@ -15,7 +15,7 @@
 
 | Champ | Type | Sens |
 | --- | --- | --- |
-| `format` | entier | Version du format (1 ; 2 depuis le firmware 0.7, qui ajoute `graines` et `heures[].prise` ; 3 depuis le firmware 0.8, qui ajoute `heures[].porteVoix`, les mesures des régions, `poids`, `lexiques`, `election`, `sondage`, `nouveautes`, `notoriete` et `langue.idees[].depouilleTick`). |
+| `format` | entier | Version du format (1 ; 2 depuis le firmware 0.7, qui ajoute `graines` et `heures[].prise` ; 3 depuis le firmware 0.8, qui ajoute `heures[].porteVoix`, les mesures des régions, `poids`, `lexiques`, `election`, `sondage`, `nouveautes`, `notoriete` et `langue.idees[].depouilleTick` ; 4 depuis le firmware 0.9, qui ajoute `biographies` et deux nouveautés). |
 | `source` | texte | `passerelle` (mesuré) ; `reconstitue` pour les jours rebâtis après coup (dossier `reconstitue/`). |
 | `firmware` | texte | Version du programme de la passerelle, ex. `0.6`. |
 | `parametres` | objet | `heureDuPaysMs` (durée d'une heure du pays en ms), `regions`, `citoyensParRegion`, `connexionsParCerveau`, `idees` (nombre d'idées du lexique), `seuilMotCommun` (régions qui doivent s'accorder pour qu'un mot soit commun), `echelle` (255). |
@@ -37,7 +37,7 @@
 | `lexiques` | liste de 6 | Format 3 : le mot de chaque région pour les 48 idées, figé au même moment (voir plus bas). |
 | `election` | objet / null | Format 3 : détail du dernier scrutin s'il a eu lieu ce jour-là (date du calendrier), sinon `null` (voir plus bas). |
 | `sondage` | objet / null | Format 3 : sondage réalisé ce jour-là, sinon `null` (voir plus bas). |
-| `nouveautes` | objet | Format 3 : nouveautés électorales du firmware 0.8 ouvertes à l'édition (`abstention`, `voteBlanc`, `sondages`, `notoriete`, vrai ou faux). Elles s'ouvrent une par soir ; tant qu'une règle est fermée, son comportement n'existe pas (aucune abstention possible avant `abstention`). |
+| `nouveautes` | objet | Format 3 : nouveautés électorales du firmware 0.8 ouvertes à l'édition (`abstention`, `voteBlanc`, `sondages`, `notoriete`, vrai ou faux ; format 4 : aussi `binai`, le journal des rebelles, et `biographies`). Elles s'ouvrent une par soir ; tant qu'une règle est fermée, son comportement n'existe pas (aucune abstention possible avant `abstention`). |
 | `notoriete` | liste de 120 | Format 3 : notoriété de chaque citoyen (0-255), dans l'ordre des identifiants. Calculée chaque soir par la passerelle (rôles et faits du jour, oubli d'environ 3 % par jour) ; elle n'influence le vote qu'une fois `nouveautes.notoriete` ouverte. |
 | `systeme` | objet | `notes` : événements techniques (voir plus bas). |
 
@@ -70,7 +70,7 @@
 | Champ | Sens |
 | --- | --- |
 | `tick`, `heure` | Moment de l'événement. |
-| `type` | Lettre : `e` élection · `o` ouverture de campagne/scrutin · `c` révolte · `k` coup de palais · `b` bascule de régime · `p` report d'élection · `m` gouvernement · `s` censure · `v` région injoignable · `x` bourse · `n` nature (tempête, épidémie, récolte…) · `f` foi · `W` mot commun · `a` nouvel âge · `R` record · `l` lettre de l'ambassadeur · `S` signal émis · `g` signal reçu · `q` écoute · `r` début d'ère · `u` nouveauté électorale ouverte (format 3 ; `sous` : 0 abstention, 1 vote blanc, 2 sondages, 3 notoriété) · `P` sondage (format 3 ; `a` candidat en tête, `b` sa part en %, `c` personnes interrogées). |
+| `type` | Lettre : `e` élection · `o` ouverture de campagne/scrutin · `c` révolte · `k` coup de palais · `b` bascule de régime · `p` report d'élection · `m` gouvernement · `s` censure · `v` région injoignable · `x` bourse · `n` nature (tempête, épidémie, récolte…) · `f` foi · `W` mot commun (première fois) · `w` mot commun retrouvé, `a` = l'idée (format 4, firmware 0.9 : l'idée avait eu un mot commun, l'avait perdu, et en retrouve un, qui peut être un autre mot) · `a` nouvel âge · `R` record · `l` lettre de l'ambassadeur · `S` signal émis · `g` signal reçu · `q` écoute · `r` début d'ère · `u` nouveauté ouverte (format 3 ; `sous` : 0 abstention, 1 vote blanc, 2 sondages, 3 notoriété ; format 4 : 4 Binaï, 5 biographies) · `P` sondage (format 3 ; `a` candidat en tête, `b` sa part en %, `c` personnes interrogées). |
 | `sous`, `a`, `b`, `c`, `d` | Paramètres bruts de l'événement (identifiants de citoyens, régions, valeurs). |
 | `texte` | Phrase du carnet, `fr` et `en` (non censurée). |
 
@@ -124,7 +124,7 @@ Chaque objet de graines : `ere` (ère annoncée par la carte ; 0 = population pr
 
 ## `systeme.notes[]`
 
-`tick`, `utc`, `type`, `detail`. Types : `migration` (firmware 0.8 : sauvegarde du pays convertie du format 3 au format 4, une seule fois, à l'installation), `temperature` (firmware 0.8 : puce de la passerelle au-dessus de 70 °C), `demarrage` (avec la cause du redémarrage), `maintenance`, `publication` (échec d'un envoi), `perte` (fichier brut abandonné faute de place), `version` (firmware 0.7 : paquet radio d'une carte qui n'a pas la même version du protocole, refusé ; au plus une note par heure), `wifi` (firmware 0.7 : connexion perdue, relance par la passerelle — la première puis une par heure —, rétablissement avec sa durée en minutes, le nombre de relances et le canal). Ces notes expliquent les trous des données ; elles ne les comblent pas.
+`tick`, `utc`, `type`, `detail`. Types : `migration` (firmware 0.8 : sauvegarde du pays convertie du format 3 au format 4, une seule fois, à l'installation), `temperature` (firmware 0.8 : puce de la passerelle au-dessus de 70 °C), `demarrage` (avec la cause du redémarrage), `maintenance`, `publication` (échec d'un envoi), `perte` (fichier brut abandonné faute de place), `version` (firmware 0.7 : paquet radio d'une carte qui n'a pas la même version du protocole, refusé ; au plus une note par heure), `wifi` (firmware 0.7 : connexion perdue, relance par la passerelle — la première puis une par heure —, rétablissement avec sa durée en minutes, le nombre de relances et le canal). `biographies` (firmware 0.9 : carnet des biographies absent, abîmé ou en retard sur le pays au démarrage, réamorcé avec les Archives). Ces notes expliquent les trous des données ; elles ne les comblent pas.
 
 ## `poids` et `lexiques` (format 3)
 
@@ -165,6 +165,23 @@ Les présidents, ministres et candidats votent toujours ; seuls les simples cito
 | `abstentions`, `blancs` | Réponses de l'échantillon. |
 
 Les électeurs les moins sûrs d'eux peuvent suivre le sondage publié le jour du vote : son effet se mesure en comparant `veritePct` au résultat.
+
+## `biographies` (format 4)
+
+Firmware 0.9 (MAJ 1b-4). La passerelle tient pour chaque citoyen un carnet d'au plus 16 étapes de vie, publié sur le site (page « Mon citoyen », à partir de l'âge de l'État civil). Le fichier du jour donne les étapes **ajoutées depuis l'édition précédente**.
+
+| Champ | Description |
+|---|---|
+| `depuis` | Date (AAAA-MM-JJ) à partir de laquelle chaque étape est notée. |
+| `amorce` | `naissance` : carnet commencé au début de l'ère ; `archives` : carnet (ré)amorcé en cours d'ère avec ce que savaient les Archives (installation du firmware, carnet perdu ou en retard sur le pays après un retour arrière). Ce qui s'est passé avant `depuis` n'est pas noté, sauf l'étape `ARCHIVES`. |
+| `etapesRetirees` | Nombre total d'étapes retirées des carnets pleins depuis `depuis` (la naissance et les 2 dernières restent ; part d'abord la moins marquante). Les fichiers quotidiens, eux, gardent toutes les étapes publiées. |
+| `nouvelles[]` | `id` (citoyen) et `etape`, un tableau `[jour, heure, type, fois, contexte, satisfaction, colère, peur, a]`. |
+
+Dans `etape` : `jour` = jour de l'ère ; `heure` 0-23 (`null` pour la naissance et les Archives) ; `fois` = combien de fois ce fait est arrivé à ce citoyen (compte gardé même quand une répétition remplace la précédente dans le carnet) ; `satisfaction`, `colère`, `peur` en % au moment de l'étape (`null` si inconnues).
+
+`type` : 1 naissance (`a` = région) · 2 Archives (`a` = drapeaux : 1 ancien président, 2 renversé par une révolution, 4 trahi, 8 auteur d'un coup, 16 limogé, 32 battu, 64 ancien ministre ; `fois` = passages au pouvoir) · 3 rejoint la rébellion (après 3 h d'affilée) · 4 la quitte (après 24 h de calme) · 5 censuré · 6 candidat · 7 élu (`a` = % des voix, + 256 si réélu) · 8 renversé (`a` 1 révolution, 2 coup de palais) · 9 auteur d'un coup de palais · 10 battu aux élections · 11 entre au gouvernement (`a` = président) · 12 quitte le gouvernement (`a` 1 = limogé) · 13 entre au journal (`a` = rubrique 0-3) · 14 quitte le journal (`a` mod 256 : 1 gouvernement, 2 palais, 3 rébellion) · 15 record du plus long règne.
+
+`contexte` (bits) : 1 tempête dans sa région · 2 épidémie dans sa région · 4 censure en vigueur · 8 jour de scrutin · 16 révolution ou coup de palais cette heure-là · 32 pénurie. C'est ce qui se passait **au même moment**, mesuré par la passerelle : jamais une cause. Le journal l'écrit « alors que », jamais « parce que ».
 
 ## Fichiers reconstitués (`donnees/ere-001/reconstitue/`)
 

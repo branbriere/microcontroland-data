@@ -2,7 +2,7 @@
 
 *[English version](etat-fonctionnalites.en.md)*
 
-**État au 28 octobre 2026, firmware 0.8 en service (installé le 25 octobre).** C'est la référence unique pour savoir si une fonction annoncée sur l'un des deux sites existe. En cas de divergence, ce tableau l'emporte sur les autres pages, et le code l'emporte sur ce tableau. Il est mis à jour à chaque version.
+**État au 2 novembre 2026, firmware 0.9 (passerelle) et 0.8.1 (régions) en service (installés le 1er novembre).** C'est la référence unique pour savoir si une fonction annoncée sur l'un des deux sites existe. En cas de divergence, ce tableau l'emporte sur les autres pages, et le code l'emporte sur ce tableau. Il est mis à jour à chaque version.
 
 **États :**
 - **En service** : la fonction tourne dans la boîte ou sur les sites.
@@ -32,14 +32,16 @@ Le firmware n'est pas encore public (il le sera avec les études). D'ici là, la
 | Publication différée en cas de coupure d'Internet | En service | 0.3 | [registre-incidents.md](registre-incidents.md) |
 | Copie du pays hors de la boîte chaque soir | En service | 0.3 | `data/sauvegarde.json` (site du journal) |
 | Bouton RESET caché (Grand Reset) | En service | 0.3 | jamais utilisé à ce jour |
-| Abstention et chronique électorale | En service à partir du 26 oct. 2026 (une nouveauté par soir) | 0.8 | `election` du fichier brut ; brève « Chronique électorale » |
-| Vote blanc | Codé, s'ouvre le 27 oct. 2026 | 0.8 | `nouveautes.voteBlanc` du fichier brut |
-| Sondages (20 citoyens tirés au sort, à mi-campagne) | Codé, s'ouvre le 28 oct. 2026 | 0.8 | `sondage` du fichier brut |
-| Notoriété (un nom connu rassure dans l'isoloir) | Codé, fermé : s'ouvre le lendemain de l'âge de la Mémoire | 0.8 | `notoriete` du fichier brut (calculée dès la 0.8, sans effet avant l'ouverture) |
+| Abstention et chronique électorale | En service depuis le 26 oct. 2026 | 0.8 | `election` du fichier brut ; brève « Chronique électorale » |
+| Vote blanc | En service depuis le 27 oct. 2026 | 0.8 | `nouveautes.voteBlanc` du fichier brut |
+| Sondages (20 citoyens tirés au sort, à mi-campagne) | En service depuis le 29 oct. 2026 | 0.8 | `sondage` du fichier brut |
+| Notoriété (un nom connu rassure dans l'isoloir) | En service depuis le 30 oct. 2026 | 0.8 | `notoriete` du fichier brut (calculée dès la 0.8, sans effet avant l'ouverture) |
 | Poids des 120 cerveaux et lexiques complets, une fois par jour | En service | 0.8 | `poids`, `lexiques` du fichier brut |
 | Porte-voix de chaque heure, mesures des régions (mémoire, calcul, temps de réponse, température) | En service | 0.8 | `heures[].porteVoix`, `heures[].regions[].systeme` |
 | Noms des ministres dans le journal | En service | 0.8 | panneau « État du pays » |
 | Sauvegarde du pays au format 4 (champs réservés : généalogie, médecine) | En service | 0.8 | [historique-versions.md](historique-versions.md) |
+| Radio renforcée : chaque région envoie son état 4 fois, la passerelle garde sa radio éveillée (environ 13 % d'heures-régions manquantes du 25 oct. au 1er nov.) | En service | 0.8.1 (régions), 0.9 (passerelle), 1er nov. 2026 | `heures[].regions` du fichier brut (`null` = région muette) |
+| Fichier brut au format 4 : biographies, nouveautés de la 0.9, événement `w` (mot commun retrouvé) | En service | 0.9, 2 nov. 2026 | [dictionnaire-donnees.md](dictionnaire-donnees.md) |
 | Travail, monnaie, école, générations, etc. (mises à jour 2 à 7) | Prévu | — | page des règles, « Ce qui est prévu » |
 
 ## Les âges de la civilisation
@@ -48,8 +50,8 @@ Le firmware n'est pas encore public (il le sera avec les études). D'ici là, la
 | --- | --- | --- | --- |
 | Fondation | La gazette | En service depuis le 9 oct. 2026 | journal |
 | Parole | La page « La langue » | En service depuis le 18 oct. 2026 | `ages` dans `data/latest.json` |
-| Mémoire | La page « Histoire », les records | Codé, fermé | même champ : progression vers l'âge |
-| État civil | Adopter un citoyen | Codé, fermé | idem |
+| Mémoire | La page « Histoire », les records | En service depuis le 24 oct. 2026 | même champ : progression vers l'âge |
+| État civil | Adopter un citoyen | En service depuis le 28 oct. 2026 | idem |
 | Diplomatie | L'ambassade, ses questions et sa lettre mensuelle | Codé, fermé | idem |
 | Diplomatie | Démentis de l'Ambassade dans le journal (coquilles des éditions passées) | Codé (0.5), fermé | idem |
 | Diplomatie | Votes du public sur les questions de l'ambassade (simples compteurs) | Codé, fermé, et en attente du service de vote (pas encore choisi) | page des mentions légales |
@@ -63,7 +65,9 @@ Le firmware n'est pas encore public (il le sera avec les études). D'ici là, la
 | Suivi des personnages (« Que devient… ? », parcours de la semaine) | En service | 0.5 et 0.6 | éditions |
 | Rubriques, journalistes citoyens signataires, billet, édition du dimanche | En service | 0.6 | `signature` dans les éditions |
 | Presse censurée (articles noircis, jamais les chiffres) | En service | 0.6 | éditions sous censure |
-| Biographie de chaque citoyen, notoriété | Prévu | — | page des règles |
+| Biographie de chaque citoyen (16 étapes au plus : le fait, l'heure et l'humeur du moment, jamais la raison), citée par le portrait du dimanche et la page « Mon citoyen » | Codé, s'ouvre le 3 nov. 2026 (une nouveauté par soir) | 0.9 | `biographies` du fichier brut |
+| Binaï, le journal des rebelles, en tête de l'édition à partir de la 3e édition consécutive sous censure | Ouvert le 2 nov. 2026 ; ne paraît que sous censure prolongée | 0.9 | `nouveautes.binai` du fichier brut |
+| Retour d'un mot commun perdu (ligne de la journée ; brève une édition sur sept au plus) | En service | 0.9 | événement `w` du fichier brut |
 
 ## Les sites
 
@@ -81,6 +85,7 @@ Le firmware n'est pas encore public (il le sera avec les études). D'ici là, la
 | Office national du tourisme (régions, religion, sites à visiter, pièce collector d'un octet au portrait du président, dépliant PDF FR/EN, version texte tourisme.txt) ; visa virtuel à l'Ambassade | Codé, fermé jusqu'à la Diplomatie | 28 oct. 2026 | [tourisme.txt](https://www.microcontroland.org/tourisme.txt) |
 | Page « L'atelier » : art primitif, un dessin 5×5 par soir calculé à partir des poids publiés (règle B3), deux lignes du critique | En service (site seulement, aucun firmware) | 28 oct. 2026 | [atelier.html](https://www.microcontroland.org/atelier.html), [atelier.json](https://www.microcontroland.org/atelier.json) |
 | Page « Galerie des présidents » : un portrait par président (diagramme de Hinton des 81 poids publiés de son cerveau de citoyen) et le relevé de chaque mandat ; ouverte à l'âge de la Mémoire | En service (site seulement, aucun firmware) | 28 oct. 2026 | [galerie.html](https://www.microcontroland.org/galerie.html), [galerie.json](https://www.microcontroland.org/galerie.json) |
+| Page « Mon citoyen » : historique de chaque citoyen, reconstitué chaque soir à partir des fichiers bruts publiés (faits politiques depuis le 9 oct., candidatures, révolte et censure depuis le 15 oct.), jusqu'au début de sa biographie | En service (site seulement, aucun firmware) | 2 nov. 2026 | [historique.json](https://www.microcontroland.org/data/historique.json) |
 | Second portrait « le président » dans la galerie (75 poids du cerveau qui gouverne, export à ajouter au fichier brut) | Prévu, MAJ 1b-5 | — | — |
 | Rubrique Arts dans l'édition (même règle, calculée par la passerelle) | Prévu, MAJ 1b-5 | — | — |
 | Publication du code du firmware | Prévu, avec les études | — | — |
