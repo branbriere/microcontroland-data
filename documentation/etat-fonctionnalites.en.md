@@ -54,7 +54,7 @@ The firmware is not public yet (it will be released with the studies). Until the
 | Civil Registry | Adopting a citizen | In service since 28 Oct 2026 | same |
 | Diplomacy | The embassy, its questions and monthly letter | Coded, closed | same |
 | Diplomacy | Embassy denials in the paper (typos of past issues) | Coded (0.5), closed | same |
-| Diplomacy | Public votes on the embassy's questions (plain counters) | Coded, closed, and waiting for the voting service (not chosen yet) | legal notice page |
+| Diplomacy | Public votes on the embassy's questions (plain counters) | In service after update 1b-5 (site counter, `votes/compte.csv`) | legal notice page |
 | Curiosity | The Research Centre's signal and listening for replies (written in the country's language only) | Coded, closed | same |
 
 ## The newspaper
@@ -88,6 +88,6 @@ The firmware is not public yet (it will be released with the studies). Until the
 | 3D National Museum (first-person tour and text tour): rebuilt every evening by a script from the published data only (gallery, studio, ages, institutions); one wing per era, opened when that era reaches the Age of Memory, frozen when the era ends; Hall of Presidents with the statue of the network of the president in office (81 weights of the citizen brain), studio, one room of artists of the evening per month, Temple annex under construction; rooms of different heights; day, evening or night light following the visitor's clock; self-hosted Three.js, no outside call | In service (website only, no firmware) | 4 Nov 2026 | [musee.html](https://www.microcontroland.org/en/musee.html), [musee.json](https://www.microcontroland.org/musee.json), [musee-catalogue.json](https://www.microcontroland.org/musee-catalogue.json) |
 | "The First Writings" page: 5×5 glyphs computed from each region's word (published lexicons, rule G1 "the stem"), from the Age of the Civil Registry; common glyph = 5 regions out of 6; presidents' names in a cartouche | In service (website only, no firmware) | 7 Nov 2026 | [ecriture.html](https://www.microcontroland.org/en/ecriture.html), [ecriture.json](https://www.microcontroland.org/ecriture.json) |
 | "My citizen" page: each citizen's history, rebuilt every evening from the published raw files (political events since 9 Oct, candidacies, revolt and censorship since 15 Oct), up to the start of their biography | In service (website only, no firmware) | 2 Nov 2026 | [historique.json](https://www.microcontroland.org/data/historique.json) |
-| Second "president" portrait in the gallery (75 weights of the governing brain, export to be added to the raw file) | Planned, update 1b-5 | — | — |
-| Arts section in the issue (same rule, computed by the gateway) | Planned, update 1b-5 | — | — |
+| Second "president" portrait in the gallery (75 weights of the governing brain, `poidsPresident` in the raw file) | In service after update 1b-5 | 0.10 | `poidsPresident` of the raw file, [galerie.html](https://www.microcontroland.org/galerie.html) |
+| Arts section in the issue (rule B3, computed by the gateway, same artist as the Studio) | In service after update 1b-5 (opens on the second evening) | 0.10 | `arts` in the issue, `nouveautes.arts` of the raw file |
 | Release of the firmware source code | Planned, with the studies | — | — |

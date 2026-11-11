@@ -15,7 +15,7 @@
 
 | Champ | Type | Sens |
 | --- | --- | --- |
-| `format` | entier | Version du format (1 ; 2 depuis le firmware 0.7, qui ajoute `graines` et `heures[].prise` ; 3 depuis le firmware 0.8, qui ajoute `heures[].porteVoix`, les mesures des régions, `poids`, `lexiques`, `election`, `sondage`, `nouveautes`, `notoriete` et `langue.idees[].depouilleTick` ; 4 depuis le firmware 0.9, qui ajoute `biographies` et deux nouveautés). |
+| `format` | entier | Version du format (1 ; 2 depuis le firmware 0.7, qui ajoute `graines` et `heures[].prise` ; 3 depuis le firmware 0.8, qui ajoute `heures[].porteVoix`, les mesures des régions, `poids`, `lexiques`, `election`, `sondage`, `nouveautes`, `notoriete` et `langue.idees[].depouilleTick` ; 4 depuis le firmware 0.9, qui ajoute `biographies` et deux nouveautés ; 5 depuis le firmware 0.10, qui ajoute `poidsPresident` et `nouveautes.arts`). |
 | `source` | texte | `passerelle` (mesuré) ; `reconstitue` pour les jours rebâtis après coup (dossier `reconstitue/`). |
 | `firmware` | texte | Version du programme de la passerelle, ex. `0.6`. |
 | `parametres` | objet | `heureDuPaysMs` (durée d'une heure du pays en ms), `regions`, `citoyensParRegion`, `connexionsParCerveau`, `idees` (nombre d'idées du lexique), `seuilMotCommun` (régions qui doivent s'accorder pour qu'un mot soit commun), `echelle` (255). |
@@ -37,7 +37,7 @@
 | `lexiques` | liste de 6 | Format 3 : le mot de chaque région pour les 48 idées, figé au même moment (voir plus bas). |
 | `election` | objet / null | Format 3 : détail du dernier scrutin s'il a eu lieu ce jour-là (date du calendrier), sinon `null` (voir plus bas). |
 | `sondage` | objet / null | Format 3 : sondage réalisé ce jour-là, sinon `null` (voir plus bas). |
-| `nouveautes` | objet | Format 3 : nouveautés électorales du firmware 0.8 ouvertes à l'édition (`abstention`, `voteBlanc`, `sondages`, `notoriete`, vrai ou faux ; format 4 : aussi `binai`, le journal des rebelles, et `biographies`). Elles s'ouvrent une par soir ; tant qu'une règle est fermée, son comportement n'existe pas (aucune abstention possible avant `abstention`). |
+| `nouveautes` | objet | Format 3 : nouveautés électorales du firmware 0.8 ouvertes à l'édition (`abstention`, `voteBlanc`, `sondages`, `notoriete`, vrai ou faux ; format 4 : aussi `binai`, le journal des rebelles, et `biographies` ; format 5 : aussi `arts`, la rubrique Arts de l'édition). Elles s'ouvrent une par soir ; tant qu'une règle est fermée, son comportement n'existe pas (aucune abstention possible avant `abstention`). |
 | `notoriete` | liste de 120 | Format 3 : notoriété de chaque citoyen (0-255), dans l'ordre des identifiants. Calculée chaque soir par la passerelle (rôles et faits du jour, oubli d'environ 3 % par jour) ; elle n'influence le vote qu'une fois `nouveautes.notoriete` ouverte. |
 | `systeme` | objet | `notes` : événements techniques (voir plus bas). |
 
@@ -70,7 +70,7 @@
 | Champ | Sens |
 | --- | --- |
 | `tick`, `heure` | Moment de l'événement. |
-| `type` | Lettre : `e` élection · `o` ouverture de campagne/scrutin · `c` révolte · `k` coup de palais · `b` bascule de régime · `p` report d'élection · `m` gouvernement · `s` censure · `v` région injoignable · `x` bourse · `n` nature (tempête, épidémie, récolte…) · `f` foi · `W` mot commun (première fois) · `w` mot commun retrouvé, `a` = l'idée (format 4, firmware 0.9 : l'idée avait eu un mot commun, l'avait perdu, et en retrouve un, qui peut être un autre mot) · `a` nouvel âge · `R` record · `l` lettre de l'ambassadeur · `S` signal émis · `g` signal reçu · `q` écoute · `r` début d'ère · `u` nouveauté ouverte (format 3 ; `sous` : 0 abstention, 1 vote blanc, 2 sondages, 3 notoriété ; format 4 : 4 Binaï, 5 biographies) · `P` sondage (format 3 ; `a` candidat en tête, `b` sa part en %, `c` personnes interrogées). |
+| `type` | Lettre : `e` élection · `o` ouverture de campagne/scrutin · `c` révolte · `k` coup de palais · `b` bascule de régime · `p` report d'élection · `m` gouvernement · `s` censure · `v` région injoignable · `x` bourse · `n` nature (tempête, épidémie, récolte…) · `f` foi · `W` mot commun (première fois) · `w` mot commun retrouvé, `a` = l'idée (format 4, firmware 0.9 : l'idée avait eu un mot commun, l'avait perdu, et en retrouve un, qui peut être un autre mot) · `a` nouvel âge · `R` record · `l` lettre de l'ambassadeur · `S` signal émis · `g` signal reçu · `q` écoute · `r` début d'ère · `u` nouveauté ouverte (format 3 ; `sous` : 0 abstention, 1 vote blanc, 2 sondages, 3 notoriété ; format 4 : 4 Binaï, 5 biographies ; format 5 : 6 rubrique Arts) · `P` sondage (format 3 ; `a` candidat en tête, `b` sa part en %, `c` personnes interrogées). |
 | `sous`, `a`, `b`, `c`, `d` | Paramètres bruts de l'événement (identifiants de citoyens, régions, valeurs). |
 | `texte` | Phrase du carnet, `fr` et `en` (non censurée). |
 
@@ -137,6 +137,20 @@ Chaque région fige, à la première heure de chaque jour, les poids des 20 cerv
 | `lexiques` | 6 entrées : 48 mots (`syllabes`, `ecrit`), un par idée dans l'ordre des identifiants d'idées, **les 48 sans exception** (une région ne sait pas quelles idées le pays a vécues ; `langue.idees` le dit) ; `null` comme pour `poids`. |
 
 Ordre des 81 poids d'un cerveau (réseau 9 entrées → 6 neurones cachés → 3 sorties) : d'abord la couche cachée, neurone par neurone (9 poids des entrées puis le biais, soit 6 × 10), puis la couche de sortie, sortie par sortie (6 poids des neurones cachés puis le biais, soit 3 × 7). Entrées : performance perçue du président, satisfaction, peur, colère, ego, charisme, ambition, charisme du président, menace. Sorties : soutien au président, envie d'être candidat, envie de se rebeller.
+
+## `poidsPresident` (format 5)
+
+Le cerveau qui gouverne (réseau 8 entrées → 5 neurones cachés → 5 sorties, 75 poids) du président en exercice au moment du relevé du matin, figé par sa région avec les autres poids et envoyé dans les mêmes 9 morceaux. Ce cerveau ne sert que pendant le mandat, et il apprend pendant le mandat. `null` : pas de président ce matin-là, relevé de sa région incomplet, ou région encore en 0.8.1. Jamais complété par des zéros.
+
+| Champ | Contenu |
+| --- | --- |
+| `id` | Identifiant du président au moment du relevé (il peut avoir changé avant l'édition : comparer avec `pays.president`). |
+| `region` | Région qui a envoyé le relevé (0 à 5). |
+| `tick` | Heure du pays où le relevé a été figé. |
+| `reseau`, `ordre` | « 8-5-5 » ; ordre des poids : couche cachée, neurone par neurone (8 entrées puis le biais, 5 × 9), puis sorties, sortie par sortie (5 neurones cachés puis le biais, 5 × 6). |
+| `poids` | 75 entiers, même échelle que `poids` (valeur × 5 / 127). |
+
+Entrées : performance réelle, colère moyenne, peur moyenne, temps avant l'élection, ego, taille du gouvernement, hostilité extérieure (réservée), ressources. Sorties : équité, répression, envie de reporter, ouverture du gouvernement, hostilité (réservée).
 
 ## `election` (format 3)
 

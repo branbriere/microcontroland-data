@@ -15,7 +15,7 @@
 
 | Field | Type | Meaning |
 | --- | --- | --- |
-| `format` | integer | Format version (1; 2 from firmware 0.7, which adds `graines` and `heures[].prise`; 3 from firmware 0.8, which adds `heures[].porteVoix`, the regions' measurements, `poids`, `lexiques`, `election`, `sondage`, `nouveautes`, `notoriete` and `langue.idees[].depouilleTick`; 4 from firmware 0.9, which adds `biographies` and two new features). |
+| `format` | integer | Format version (1; 2 from firmware 0.7, which adds `graines` and `heures[].prise`; 3 from firmware 0.8, which adds `heures[].porteVoix`, the regions' measurements, `poids`, `lexiques`, `election`, `sondage`, `nouveautes`, `notoriete` and `langue.idees[].depouilleTick`; 4 from firmware 0.9, which adds `biographies` and two new features; 5 from firmware 0.10, which adds `poidsPresident` and `nouveautes.arts`). |
 | `source` | text | `passerelle` (measured by the gateway); `reconstitue` for days rebuilt afterwards (`reconstitue/` folder). |
 | `firmware` | text | Gateway firmware version, e.g. `0.6`. |
 | `parametres` | object | `heureDuPaysMs` (length of a country hour in ms), `regions`, `citoyensParRegion` (citizens per region), `connexionsParCerveau` (connections per brain), `idees` (ideas in the lexicon), `seuilMotCommun` (regions that must agree for a word to be shared), `echelle` (255). |
@@ -37,7 +37,7 @@
 | `lexiques` (lexicons) | list of 6 | Format 3: each region's word for all 48 ideas, frozen at the same moment (see below). |
 | `election` | object / null | Format 3: detail of the latest vote if it took place that calendar day, otherwise `null` (see below). |
 | `sondage` (poll) | object / null | Format 3: poll taken that day, otherwise `null` (see below). |
-| `nouveautes` (new rules) | object | Format 3: firmware 0.8 electoral features open at the time of the issue (`abstention`, `voteBlanc` blank vote, `sondages` polls, `notoriete` fame; true or false; format 4: also `binai`, the rebels' newspaper, and `biographies`). They open one per evening; while a rule is closed, its behaviour does not exist (no abstention is possible before `abstention`). |
+| `nouveautes` (new rules) | object | Format 3: firmware 0.8 electoral features open at the time of the issue (`abstention`, `voteBlanc` blank vote, `sondages` polls, `notoriete` fame; true or false; format 4: also `binai`, the rebels' newspaper, and `biographies`; format 5: also `arts`, the issue's Arts section). They open one per evening; while a rule is closed, its behaviour does not exist (no abstention is possible before `abstention`). |
 | `notoriete` (fame) | list of 120 | Format 3: each citizen's fame (0-255), in id order. Computed every evening by the gateway (roles and the day's events, about 3% forgotten per day); it only influences the vote once `nouveautes.notoriete` is open. |
 | `systeme` | object | `notes`: technical events (see below). |
 
@@ -70,7 +70,7 @@
 | Field | Meaning |
 | --- | --- |
 | `tick`, `heure` | When it happened. |
-| `type` | Letter: `e` election · `o` campaign/poll opening · `c` revolt · `k` palace coup · `b` regime change · `p` election postponed · `m` government · `s` censorship · `v` region unreachable · `x` market · `n` nature (storm, epidemic, harvest…) · `f` faith · `W` shared word (first time) · `w` shared word regained, `a` = the idea (format 4, firmware 0.9: the idea had a shared word, lost it, and has one again, which may be a different word) · `a` new age · `R` record · `l` ambassador's letter · `S` signal sent · `g` signal received · `q` listening · `r` era start · `u` new feature opened (format 3; `sous`: 0 abstention, 1 blank vote, 2 polls, 3 fame; format 4: 4 Binaï, 5 biographies) · `P` poll (format 3; `a` leading candidate, `b` their share in %, `c` people asked). |
+| `type` | Letter: `e` election · `o` campaign/poll opening · `c` revolt · `k` palace coup · `b` regime change · `p` election postponed · `m` government · `s` censorship · `v` region unreachable · `x` market · `n` nature (storm, epidemic, harvest…) · `f` faith · `W` shared word (first time) · `w` shared word regained, `a` = the idea (format 4, firmware 0.9: the idea had a shared word, lost it, and has one again, which may be a different word) · `a` new age · `R` record · `l` ambassador's letter · `S` signal sent · `g` signal received · `q` listening · `r` era start · `u` new feature opened (format 3; `sous`: 0 abstention, 1 blank vote, 2 polls, 3 fame; format 4: 4 Binaï, 5 biographies; format 5: 6 Arts section) · `P` poll (format 3; `a` leading candidate, `b` their share in %, `c` people asked). |
 | `sous`, `a`, `b`, `c`, `d` | Raw event parameters (citizen ids, regions, values). |
 | `texte` | Logbook sentence, `fr` and `en` (never censored). |
 
@@ -137,6 +137,20 @@ At the first hour of each day, every region freezes the weights of its 20 brains
 | `lexiques` | 6 entries: 48 words (`syllabes`, `ecrit`), one per idea in idea-id order, **all 48 without exception** (a region does not know which ideas the country has lived through; `langue.idees` says so); `null` as for `poids`. |
 
 Order of a brain's 81 weights (network of 9 inputs → 6 hidden neurons → 3 outputs): first the hidden layer, neuron by neuron (9 input weights then the bias, i.e. 6 × 10), then the output layer, output by output (6 hidden-neuron weights then the bias, i.e. 3 × 7). Inputs: perceived performance of the president, satisfaction, fear, anger, ego, charisma, ambition, the president's charisma, threat. Outputs: support for the president, wish to stand as a candidate, wish to rebel.
+
+## `poidsPresident` (format 5)
+
+The governing brain (network of 8 inputs → 5 hidden neurons → 5 outputs, 75 weights) of the president in office at the time of the morning record, frozen by their region together with the other weights and sent in the same 9 chunks. This brain is only used during the term, and it learns during the term. `null`: no president that morning, the region's record incomplete, or the region still on 0.8.1. Never filled in with zeros.
+
+| Field | Content |
+| --- | --- |
+| `id` | The president's identifier at the time of the record (it may have changed before the issue: compare with `pays.president`). |
+| `region` | Region that sent the record (0 to 5). |
+| `tick` | Country hour at which the record was frozen. |
+| `reseau`, `ordre` | "8-5-5"; weight order: hidden layer, neuron by neuron (8 inputs then the bias, 5 × 9), then outputs, output by output (5 hidden neurons then the bias, 5 × 6). |
+| `poids` | 75 integers, same scale as `poids` (value × 5 / 127). |
+
+Inputs: actual performance, average anger, average fear, time to the election, ego, size of the government, outside hostility (reserved), resources. Outputs: fairness, repression, wish to postpone, openness of the government, hostility (reserved).
 
 ## `election` (format 3)
 

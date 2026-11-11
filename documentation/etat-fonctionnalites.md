@@ -54,7 +54,7 @@ Le firmware n'est pas encore public (il le sera avec les études). D'ici là, la
 | État civil | Adopter un citoyen | En service depuis le 28 oct. 2026 | idem |
 | Diplomatie | L'ambassade, ses questions et sa lettre mensuelle | Codé, fermé | idem |
 | Diplomatie | Démentis de l'Ambassade dans le journal (coquilles des éditions passées) | Codé (0.5), fermé | idem |
-| Diplomatie | Votes du public sur les questions de l'ambassade (simples compteurs) | Codé, fermé, et en attente du service de vote (pas encore choisi) | page des mentions légales |
+| Diplomatie | Votes du public sur les questions de l'ambassade (simples compteurs) | En service après la MAJ 1b-5 (compteur du site, `votes/compte.csv`) | page des mentions légales |
 | Curiosité | Le signal du Centre de recherche et l'écoute des réponses (écrites dans la langue du pays uniquement) | Codé, fermé | idem |
 
 ## Le journal
@@ -88,6 +88,6 @@ Le firmware n'est pas encore public (il le sera avec les études). D'ici là, la
 | Musée national en 3D (visite à la première personne et visite en texte) : construit chaque soir par un script à partir des seules données publiées (galerie, atelier, âges, institutions) ; une aile par ère, ouverte à l'âge de la Mémoire de cette ère, figée à la fin de l'ère ; salle des présidents avec la statue du réseau du président en fonction (81 poids du cerveau de citoyen), atelier, une salle des artistes du soir par mois, annexe du Temple en chantier ; hauteurs de salles variables ; lumière jour, soir ou nuit selon l'heure du visiteur ; Three.js hébergé, aucun appel extérieur | En service (site seulement, aucun firmware) | 4 nov. 2026 | [musee.html](https://www.microcontroland.org/musee.html), [musee.json](https://www.microcontroland.org/musee.json), [musee-catalogue.json](https://www.microcontroland.org/musee-catalogue.json) |
 | Page « Les premières écritures » : glyphes 5×5 calculés à partir du mot de chaque région (lexiques publiés, règle G1 « la hampe »), depuis l'âge de l'État civil ; glyphe commun = 5 régions sur 6 ; noms des présidents en cartouche | En service (site seulement, aucun firmware) | 7 nov. 2026 | [ecriture.html](https://www.microcontroland.org/ecriture.html), [ecriture.json](https://www.microcontroland.org/ecriture.json) |
 | Page « Mon citoyen » : historique de chaque citoyen, reconstitué chaque soir à partir des fichiers bruts publiés (faits politiques depuis le 9 oct., candidatures, révolte et censure depuis le 15 oct.), jusqu'au début de sa biographie | En service (site seulement, aucun firmware) | 2 nov. 2026 | [historique.json](https://www.microcontroland.org/data/historique.json) |
-| Second portrait « le président » dans la galerie (75 poids du cerveau qui gouverne, export à ajouter au fichier brut) | Prévu, MAJ 1b-5 | — | — |
-| Rubrique Arts dans l'édition (même règle, calculée par la passerelle) | Prévu, MAJ 1b-5 | — | — |
+| Second portrait « le président » dans la galerie (75 poids du cerveau qui gouverne, `poidsPresident` du fichier brut) | En service après la MAJ 1b-5 | 0.10 | `poidsPresident` du fichier brut, [galerie.html](https://www.microcontroland.org/galerie.html) |
+| Rubrique Arts dans l'édition (règle B3, calculée par la passerelle, même artiste que l'atelier) | En service après la MAJ 1b-5 (ouverte le deuxième soir) | 0.10 | `arts` de l'édition, `nouveautes.arts` du fichier brut |
 | Publication du code du firmware | Prévu, avec les études | — | — |
